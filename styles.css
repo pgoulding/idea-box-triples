@@ -1,0 +1,41 @@
+/*---------- Body ------------------*/
+*{
+  border-top: 1px solid red
+  box-sizing: border-box;
+}
+body{
+
+}
+
+/*---------- Header ----------------*/
+header{
+
+}
+/*---------- Aritcle ---------------*/
+article{
+
+}
+.container{
+  border: 1px dashed;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+/*---------- Aside -----------------*/
+aside{
+
+}
+/*---------- Footer ----------------*/
+footer{
+
+}
+/*---------- Media Queries ---------*/
+@media screen and (max-width: 1024px){
+
+}
+@media screen and (max-width: 768px){
+
+}
+@media screen and (max-width: 440px){
+
+}
