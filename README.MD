@@ -9,3 +9,5 @@
 ### Background Output Body: #F9F9FA
 ### IdeaBox Icon: "ideabox" color: #B2A1B1, "triples" #FFFFFF
 ### Button Color "Enabled" background
+
+![alt text](https://imgur.com/a/XHtiUap"ideaBox comp1")
