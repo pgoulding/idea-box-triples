@@ -10,4 +10,6 @@
 ### IdeaBox Icon: "ideabox" color: #B2A1B1, "triples" #FFFFFF
 ### Button Color "Enabled" background
 
-![alt text](https://imgur.com/a/XHtiUap"ideaBox comp1")
+![Comp Example 1](https://i.imgur.com/3avgOpk.jpg)
+![Comp Example 2](https://i.imgur.com/flh0e9S.jpg)
+![Comp Example 3](https://i.imgur.com/NLH3RMH.jpg)
