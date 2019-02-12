@@ -4,7 +4,7 @@ var newIdea = new Idea()
 var searchInput = document.querySelector('#search-input')
 var titleInput = document.querySelector('#title-input')
 var bodyInput = document.querySelector('#body-input')
-var searchBtn = document.querySelector('.search-icon')
+// var searchBtn = document.querySelector('.search-icon')
 var saveBtn = document.querySelector('#save-button')
 var upvoteBtn = document.querySelector('.upvote-icon')
 var downvoteBtn = document.querySelector('.downvote-icon')
@@ -19,7 +19,7 @@ var ideaTemplate = document.querySelector('template')
 
 
 /*---------- Event Listeners -----------*/
-// searchInput.addEventListener('input', searchIdeas);
+searchInput.addEventListener('input', searchIdeas);
 // searchBtn.addEventListener( , );
 saveBtn.addEventListener('click', createIdeaCard)
 // upvoteBtn.addEventListener('click', upvoteIdea);
@@ -29,7 +29,19 @@ saveBtn.addEventListener('click', createIdeaCard)
 
 /*---------- Functions -----------------*/
 function searchIdeas() {
-
+  var searchResults = []
+  var searchQuery = searchInput.value.toLowerCase()
+  var ideas = localStorage.ideas
+  ideas = JSON.parse(ideas)
+  ideas.forEach(function(i) {
+    if(i.title.toLowerCase().includes(searchQuery) || i.body.toLowerCase().includes(searchQuery)) {
+      searchResults.push(i);
+    }
+  })
+  ideaArea.innerHTML = ""
+  searchResults.forEach(function(i) {
+    addIdea(i)
+  })
 }
 
 function createIdeaCard(e) {
