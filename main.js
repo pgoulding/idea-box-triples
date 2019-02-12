@@ -34,10 +34,10 @@ function searchIdeas() {
 
 function createIdeaCard(e) {
   e.preventDefault()
-  var ideaObj = newIdea.saveToStorage()
+  newIdea.saveToStorage()
   var ideaClone = ideaTemplate.content.cloneNode(true)
-  ideaClone.querySelector('.idea-title').innerText = ideaObj.title
-  ideaClone.querySelector('.idea-body').innerText = ideaObj.body
+  ideaClone.querySelector('.idea-title').innerText = newIdea.title
+  ideaClone.querySelector('.idea-body').innerText = newIdea.body
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild)
   titleInput.value = ''
   bodyInput.value = ''
