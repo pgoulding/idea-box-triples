@@ -17,13 +17,13 @@ var ideaTemplate = document.querySelector('template');
 
 
 /*---------- Event Listeners -----------*/
-searchInput.addEventListener('input', searchIdeas);
-searchBtn.addEventListener( , );
-saveBtn.addEventListener('click', saveIdea);
+// searchInput.addEventListener('input', searchIdeas);
+// searchBtn.addEventListener( , );
+// saveBtn.addEventListener('click', saveIdea);
 saveBtn.addEventListener('click', createIdeaCard);
-upvoteBtn.addEventListener('click', upvoteIdea);
-downvoteBtn.addEventListener('click', downvoteIdea);
-ideaCard.addEventListener('click', removeIdea);
+// upvoteBtn.addEventListener('click', upvoteIdea);
+// downvoteBtn.addEventListener('click', downvoteIdea);
+// ideaCard.addEventListener('click', removeIdea);
 
 
 /*---------- Functions -----------------*/
