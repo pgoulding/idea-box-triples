@@ -10,6 +10,8 @@ var deleteBtn = document.querySelector('.delete-icon');
 var ideaCardTitle = document.querySelector('.idea-title');
 var ideaCardBody = document.querySelector('.idea-body');
 var ideaCardQuality = document.querySelector('.idea-quality');
+var ideaArea = document.querySelector('#idea-area');
+var ideaTemplate = document.querySelector('template');
 
 /*---------- Global Variables ----------*/
 
@@ -33,8 +35,10 @@ function saveIdea() {
 
 }
 
-function createIdeaCard() {
-
+function createIdeaCard(e) {
+  e.preventDefault();
+  var ideaClone = ideaTemplate.content.cloneNode(true);
+  ideaArea.appendChild(ideaClone);
 }
 
 function upvoteIdea() {
