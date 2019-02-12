@@ -8,7 +8,7 @@ class Idea {
   }
 
   deleteFromStorage() {
-    
+
   }
 
   saveToStorage() {
@@ -19,7 +19,6 @@ class Idea {
     newIdea.body = bodyInput.value
     ideas.push(newIdea)
     localStorage.ideas = JSON.stringify(ideas)
-    return newIdea
   }
 
   updateContent() {
