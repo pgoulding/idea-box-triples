@@ -1,4 +1,5 @@
-/*---------- Body ------------------*/
+/*---------- All ------------------*/
+
 *,
 *::before,
 *::after {
@@ -6,7 +7,7 @@
 }
 
 body, html{
-  width: 100%;
+  width: 100vw;
   height: 100%;
   font-family: 'Open Sans';
   background-color: #FBFDFD;
@@ -14,18 +15,14 @@ body, html{
 
 /*---------- Header ----------------*/
 
-.center-wrapper {
-  width: 1200px;
-  margin: auto;
-  height: auto;
-}
-
 header {
   background: #322A30;
   padding: 0 40px;
 }
 
-header .center-wrapper {
+.header-wrapper {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -44,8 +41,8 @@ h1 span {
 }
 
 #search-bar {
-  height: 30px;
-  width: 30%;
+  height: 35px;
+  width: 400px;
   background-color: lightgrey;
   display: flex;
   flex-direction: row;
@@ -64,8 +61,8 @@ h1 span {
 }
 
 .search-icon {
-  margin-top: 2px;
   color: white;
+  line-height: 35px;
 }
 
 #search-bar input {
@@ -75,15 +72,24 @@ h1 span {
   border-style: none;
 }
 
+/*---------- Body ----------------*/
+
 main {
   background-color: #EEF2F2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: auto;
 }
 
-#idea-input {
+.wrapper {
+  max-width: 1200px;
+  margin: auto;
+  padding-bottom: 1px;
+}
+
+form {
+  padding-bottom: 25px;
+}
+
+form > * {
   width: 60%;
   margin: auto;
 }
@@ -128,9 +134,10 @@ textarea {
 
 #save-button {
   height: 50px;
-  width: 100%;
+  width: 60%;
   background-color: #5D5C6B;
-  margin: 25px 0;
+  margin-top: 25px;
+  display: block;
   color: white;
   font-weight: 700;
   font-size: 23px;
