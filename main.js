@@ -35,9 +35,13 @@ function searchIdeas() {
 function createIdeaCard(e) {
   e.preventDefault()
   newIdea.saveToStorage()
+  addIdea(newIdea)
+}
+
+function addIdea(idea) {
   var ideaClone = ideaTemplate.content.cloneNode(true)
-  ideaClone.querySelector('.idea-title').innerText = newIdea.title
-  ideaClone.querySelector('.idea-body').innerText = newIdea.body
+  ideaClone.querySelector('.idea-title').innerText = idea.title
+  ideaClone.querySelector('.idea-body').innerText = idea.body
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild)
   titleInput.value = ''
   bodyInput.value = ''
@@ -54,3 +58,18 @@ function downvoteIdea() {
 function removeIdea() {
 
 }
+
+function addExistingCards() {
+  var ideas = localStorage.ideas || '[]'
+  ideas = JSON.parse(ideas)
+  ideas.forEach(function(i) {
+    var existingIdea = new Idea()
+    existingIdea.id = i.id
+    existingIdea.title = i.title
+    existingIdea.body = i.body
+    existingIdea.quality = i.quality
+    addIdea(existingIdea);
+  })
+}
+
+window.onload = addExistingCards()
