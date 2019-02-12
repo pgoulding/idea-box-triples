@@ -7,12 +7,19 @@ class Idea {
     this.quality = 'Swill'
   }
 
-  saveToStorage() {
-
+  deleteFromStorage() {
+    
   }
 
-  deleteFromStorage() {
-
+  saveToStorage() {
+    var ideas = localStorage.ideas || '[]'
+    ideas = JSON.parse(ideas)
+    // newIdea.id = 1
+    newIdea.title = titleInput.value
+    newIdea.body = bodyInput.value
+    ideas.push(newIdea)
+    localStorage.ideas = JSON.stringify(ideas)
+    return newIdea
   }
 
   updateContent() {
