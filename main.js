@@ -3,7 +3,6 @@
 var searchInput = document.querySelector('#search-input')
 var titleInput = document.querySelector('#title-input')
 var bodyInput = document.querySelector('#body-input')
-// var searchBtn = document.querySelector('.search-icon')
 var saveBtn = document.querySelector('#save-button')
 var upvoteBtn = document.querySelector('.upvote-icon')
 var downvoteBtn = document.querySelector('.downvote-icon')
@@ -19,12 +18,14 @@ var ideaCard = document.querySelector('#idea-area')
 
 
 /*---------- Event Listeners -----------*/
-searchInput.addEventListener('input', searchIdeas);
-// searchBtn.addEventListener( , );
 saveBtn.addEventListener('click', createIdeaCard)
-// upvoteBtn.addEventListener('click', upvoteIdea);
-// downvoteBtn.addEventListener('click', downvoteIdea);
-ideaCard.addEventListener('click', removeIdea);
+searchInput.addEventListener('input', searchIdeas)
+// upvoteBtn.addEventListener('click', upvoteIdea)
+// downvoteBtn.addEventListener('click', downvoteIdea)
+ideaCard.addEventListener('click', removeIdea)
+ideaCard.addEventListener('input', saveEdits)
+// ideaCardTitle.addEventListener('blur', saveEdits)
+// ideaCardBody.addEventListener('blur', saveEdits)
 
 
 
@@ -32,16 +33,16 @@ ideaCard.addEventListener('click', removeIdea);
 function searchIdeas() {
   var searchResults = []
   var searchQuery = searchInput.value.toLowerCase()
-  var ideas = localStorage.ideas
+  var ideas = localStorage.ideas || '[]'
   ideas = JSON.parse(ideas)
-  ideas.forEach(function(i) {
-    if(i.title.toLowerCase().includes(searchQuery) || i.body.toLowerCase().includes(searchQuery)) {
-      searchResults.push(i);
+  ideas.forEach(function(idea) {
+    if(idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery)) {
+      searchResults.push(idea)
     }
   })
   ideaArea.innerHTML = ""
-  searchResults.forEach(function(i) {
-    addIdeaCard(i)
+  searchResults.forEach(function(idea) {
+    addIdeaCard(idea)
   })
 }
 
@@ -56,10 +57,26 @@ function addIdeaCard(idea) {
   var ideaClone = ideaTemplate.content.cloneNode(true)
   ideaClone.querySelector('.idea-title').innerText = idea.title
   ideaClone.querySelector('.idea-body').innerText = idea.body
-  ideaClone.querySelector('article').dataset.id = idea.id;
+  ideaClone.querySelector('article').dataset.id = idea.id
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild)
   titleInput.value = ''
   bodyInput.value = ''
+}
+
+function saveEdits(e) {
+  var ideas = localStorage.ideas || '[]'
+  ideas = JSON.parse(ideas)
+  var ideaIndex = getIdeaIndex(e, ideas);
+
+}
+
+function getIdeaIndex(e, ideas) {
+  var parent = e.target.parentNode
+  var parentID = parseInt(parent.dataset.id)
+  var index = ideas.findIndex(function(idea) {
+    return idea.id === parentID
+  });
+  return index;
 }
 
 function upvoteIdea() {
@@ -70,17 +87,17 @@ function downvoteIdea() {
 
 }
 
-function removeIdea() {
-  if (event.target.className === 'delete-icon') {
-    event.target.parentNode.parentNode.parentNode.remove();
+function removeIdea(e) {
+  if (e.target.className === 'delete-icon') {
+    e.target.parentNode[3].remove()
   }
 }
 
 function addExistingCards() {
   var ideas = localStorage.ideas || '[]'
   ideas = JSON.parse(ideas)
-  ideas.forEach(function(i) {
-    var existingIdea = new Idea(i.id, i.title, i.body, i.quality)
+  ideas.forEach(function(idea) {
+    var existingIdea = new Idea(idea.id, idea.title, idea.body, idea.quality)
     addIdeaCard(existingIdea);
   })
 }

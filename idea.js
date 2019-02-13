@@ -13,10 +13,10 @@ class Idea {
 
   // Create static method and pass idea as argument. Call with Idea.saveToStorage(newIdea) in main.js
   saveToStorage() {
-    var ideas = localStorage.ideas || '[]'
-    ideas = JSON.parse(ideas)
-    ideas.push(this)
-    localStorage.ideas = JSON.stringify(ideas)
+    var ideasString = localStorage.ideas || '[]'
+    var ideasObject = JSON.parse(ideasString)
+    ideasObject.push(this)
+    localStorage.ideas = JSON.stringify(ideasObject)
   }
 
   updateContent() {
