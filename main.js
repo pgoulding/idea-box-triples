@@ -17,7 +17,6 @@ var ideaCard = document.querySelector('#idea-area')
 
 /*---------- Global Variables ----------*/
 
-var nextID = 0;
 
 /*---------- Event Listeners -----------*/
 searchInput.addEventListener('input', searchIdeas);
@@ -48,17 +47,23 @@ function searchIdeas() {
 
 function createIdeaCard(e) {
   e.preventDefault()
-  nextID++; // use localStorage, function to increment id
-  var newIdea = new Idea(nextID, titleInput.value, bodyInput.value)
+  incrementID()
+  var newIdea = new Idea(localStorage.nextID, titleInput.value, bodyInput.value)
   newIdea.saveToStorage()
   addIdea(newIdea)
+}
+
+function incrementID() {
+  var nextID = localStorage.nextID || 0
+  nextID++
+  localStorage.nextID = nextID
 }
 
 function addIdea(idea) {
   var ideaClone = ideaTemplate.content.cloneNode(true)
   ideaClone.querySelector('.idea-title').innerText = idea.title
   ideaClone.querySelector('.idea-body').innerText = idea.body
-  ideaClone.querySelector('article').dataset.id = nextID;
+  ideaClone.querySelector('article').dataset.id = idea.id;
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild)
   titleInput.value = ''
   bodyInput.value = ''
@@ -82,11 +87,7 @@ function addExistingCards() {
   var ideas = localStorage.ideas || '[]'
   ideas = JSON.parse(ideas)
   ideas.forEach(function(i) {
-    var existingIdea = new Idea()
-    existingIdea.id = i.id
-    existingIdea.title = i.title
-    existingIdea.body = i.body
-    existingIdea.quality = i.quality
+    var existingIdea = new Idea(i.id, i.title, i.body, i.quality)
     addIdea(existingIdea);
   })
 }
