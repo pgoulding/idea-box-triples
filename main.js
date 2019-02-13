@@ -14,6 +14,7 @@ var ideaCardBody = document.querySelector('.idea-body')
 var ideaCardQuality = document.querySelector('.idea-quality')
 var ideaArea = document.querySelector('#idea-area')
 var ideaTemplate = document.querySelector('template')
+var ideaCard = document.querySelector('#idea-area')
 
 /*---------- Global Variables ----------*/
 
@@ -24,7 +25,7 @@ searchInput.addEventListener('input', searchIdeas);
 saveBtn.addEventListener('click', createIdeaCard)
 // upvoteBtn.addEventListener('click', upvoteIdea);
 // downvoteBtn.addEventListener('click', downvoteIdea);
-// ideaCard.addEventListener('click', removeIdea);
+ideaCard.addEventListener('click', removeIdea);
 
 
 /*---------- Functions -----------------*/
@@ -68,7 +69,9 @@ function downvoteIdea() {
 }
 
 function removeIdea() {
-
+  if (event.target.className === 'delete-icon') {
+    event.target.parentNode.parentNode.parentNode.remove();
+  }
 }
 
 function addExistingCards() {
