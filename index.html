@@ -41,12 +41,12 @@
       </form>
     </div>
   </main>
-  <section id="idea-area" class="wrapper">
+  <section id="idea-area" class="wrapper"></section>
   <!-- Template -->
-  <template class="idea-card-template">
+  <template>
     <article data-id class="idea-card">
-      <h2 class="idea-title"></h2>
-      <p class="idea-body"></p>
+      <h2 contenteditable="true" class="idea-title"></h2>
+      <p contenteditable="true" class="idea-body"></p>
       <section class="idea-votes">
         <div class="vote-container">
           <img src="images/upvote.svg" class="upvote-icon" alt="upvote">
@@ -59,7 +59,6 @@
       </section>
     </article>
   </template>
-  </section>
   <script src="idea.js"></script>
   <script src="main.js"></script>
 </body>
