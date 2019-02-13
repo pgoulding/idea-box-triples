@@ -1,4 +1,3 @@
-var newIdea = new Idea()
 
 /*---------- Query Selectors -----------*/
 var searchInput = document.querySelector('#search-input')
@@ -18,6 +17,7 @@ var ideaCard = document.querySelector('#idea-area')
 
 /*---------- Global Variables ----------*/
 
+var nextID = 0;
 
 /*---------- Event Listeners -----------*/
 searchInput.addEventListener('input', searchIdeas);
@@ -26,6 +26,7 @@ saveBtn.addEventListener('click', createIdeaCard)
 // upvoteBtn.addEventListener('click', upvoteIdea);
 // downvoteBtn.addEventListener('click', downvoteIdea);
 ideaCard.addEventListener('click', removeIdea);
+
 
 
 /*---------- Functions -----------------*/
@@ -47,6 +48,8 @@ function searchIdeas() {
 
 function createIdeaCard(e) {
   e.preventDefault()
+  nextID++; // use localStorage, function to increment id
+  var newIdea = new Idea(nextID, titleInput.value, bodyInput.value)
   newIdea.saveToStorage()
   addIdea(newIdea)
 }
@@ -55,6 +58,7 @@ function addIdea(idea) {
   var ideaClone = ideaTemplate.content.cloneNode(true)
   ideaClone.querySelector('.idea-title').innerText = idea.title
   ideaClone.querySelector('.idea-body').innerText = idea.body
+  ideaClone.querySelector('article').dataset.id = nextID;
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild)
   titleInput.value = ''
   bodyInput.value = ''
