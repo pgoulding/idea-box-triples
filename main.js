@@ -7,12 +7,12 @@ var saveBtn = document.querySelector('#save-button')
 var upvoteBtn = document.querySelector('.upvote-icon')
 var downvoteBtn = document.querySelector('.downvote-icon')
 var deleteBtn = document.querySelector('.delete-icon')
-var ideaCardTitle = document.querySelector('.idea-title')
-var ideaCardBody = document.querySelector('.idea-body')
-var ideaCardQuality = document.querySelector('.idea-quality')
+var cardTitles = document.querySelector('.idea-title')
+var cardBodies = document.querySelector('.idea-body')
+// var ideaCardQuality = document.querySelector('.idea-quality')
 var ideaArea = document.querySelector('#idea-area')
 var ideaTemplate = document.querySelector('template')
-var ideaCard = document.querySelector('#idea-area')
+// var ideaCard = document.querySelector('#idea-area')
 
 /*---------- Global Variables ----------*/
 
@@ -22,8 +22,9 @@ saveBtn.addEventListener('click', createIdeaCard)
 searchInput.addEventListener('input', searchIdeas)
 // upvoteBtn.addEventListener('click', upvoteIdea)
 // downvoteBtn.addEventListener('click', downvoteIdea)
-ideaCard.addEventListener('click', removeIdea)
-ideaCard.addEventListener('input', saveEdits)
+ideaArea.addEventListener('click', removeIdeaCard)
+ideaArea.addEventListener('focusout', saveEdits)
+
 // ideaCardTitle.addEventListener('blur', saveEdits)
 // ideaCardBody.addEventListener('blur', saveEdits)
 
@@ -64,14 +65,18 @@ function addIdeaCard(idea) {
 }
 
 function saveEdits(e) {
-  var ideas = localStorage.ideas || '[]'
-  ideas = JSON.parse(ideas)
-  var ideaIndex = getIdeaIndex(e, ideas);
-
+  console.log('test')
+  var ideasString = localStorage.ideas || '[]'
+  ideas = JSON.parse(ideasString);
+  var i = getIdeaIndex(e, ideas);
+  var ideaToChange = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
+  ideaToChange.updateContent(e.target.innerText, e.target.classList);
+  ideas[i] = ideaToChange;
+  localStorage.ideas = JSON.stringify(ideas);
 }
 
 function getIdeaIndex(e, ideas) {
-  var parent = e.target.parentNode
+  var parent = e.target.closest('article')
   var parentID = parseInt(parent.dataset.id)
   var index = ideas.findIndex(function(idea) {
     return idea.id === parentID
@@ -87,9 +92,9 @@ function downvoteIdea() {
 
 }
 
-function removeIdea(e) {
+function removeIdeaCard(e) {
   if (e.target.className === 'delete-icon') {
-    e.target.parentNode[3].remove()
+    e.target.closest('article').remove()
   }
 }
 
