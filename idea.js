@@ -8,21 +8,12 @@ class Idea {
   }
 
   deleteFromStorage(parentID, i) {
-// locate specific id on targeted card
-
-// locate specific object with specific id
-
-// remove specific object
     var ideasString = localStorage.ideas || '[]'
     var ideas = JSON.parse(ideasString);
-
-
     ideas.splice(i, 1);
     console.log(i);
     console.log(ideas);
-      // localStorage.removeItem(ideas[i]);
     localStorage.ideas = JSON.stringify(ideas)
-  
   }
 
   // Create static method and pass idea as argument. Call with Idea.saveToStorage(newIdea) in main.js
@@ -31,8 +22,6 @@ class Idea {
     var ideas = JSON.parse(ideasString)
     ideas.push(this)
     localStorage.ideas = JSON.stringify(ideas)
-
-    // localStorage.setItem("id", JSON.stringify(ideas));
   }
 
   updateContent(text, key) {

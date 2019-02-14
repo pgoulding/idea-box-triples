@@ -7,8 +7,8 @@ var saveBtn = document.querySelector('#save-button')
 var upvoteBtn = document.querySelector('.upvote-icon')
 var downvoteBtn = document.querySelector('.downvote-icon')
 var deleteBtn = document.querySelector('.delete-icon')
-var cardTitles = document.querySelector('.idea-title')
-var cardBodies = document.querySelector('.idea-body')
+// var cardTitles = document.querySelector('.idea-title')
+// var cardBodies = document.querySelector('.idea-body')
 // var ideaCardQuality = document.querySelector('.idea-quality')
 var ideaArea = document.querySelector('#idea-area')
 var ideaTemplate = document.querySelector('template')
@@ -95,9 +95,6 @@ function removeIdeaCard(e) {
     var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
     ideaToDelete.deleteFromStorage(i);
   }
-
-
-
 }
 
 function addExistingCards() {
