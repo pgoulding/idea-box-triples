@@ -19,10 +19,11 @@ var ideaCard = document.querySelector('#idea-area')
 
 /*---------- Event Listeners -----------*/
 saveBtn.addEventListener('click', createIdeaCard)
+
 searchInput.addEventListener('input', searchIdeas)
 // upvoteBtn.addEventListener('click', upvoteIdea)
 // downvoteBtn.addEventListener('click', downvoteIdea)
-ideaCard.addEventListener('click', removeIdea)
+ideaCard.addEventListener('click', removeIdeaCard)
 ideaCard.addEventListener('input', saveEdits)
 // ideaCardTitle.addEventListener('blur', saveEdits)
 // ideaCardBody.addEventListener('blur', saveEdits)
@@ -79,6 +80,7 @@ function getIdeaIndex(e, ideas) {
   return index;
 }
 
+
 function upvoteIdea() {
 
 }
@@ -87,10 +89,15 @@ function downvoteIdea() {
 
 }
 
-function removeIdea(e) {
-  if (e.target.className === 'delete-icon') {
-    e.target.parentNode[3].remove()
+
+function removeIdeaCard(e) {
+  if (e.target.className ==='delete-icon') {
+    e.target.closest('article').remove();
   }
+
+
+  // console.log(event.target.closest(dataset.id))
+
 }
 
 function addExistingCards() {

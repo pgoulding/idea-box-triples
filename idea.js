@@ -8,7 +8,12 @@ class Idea {
   }
 
   deleteFromStorage() {
+// locate specific id on targeted card
 
+// locate specific object with specific id
+
+// remove specific object
+    localStorage.removeItem()
   }
 
   // Create static method and pass idea as argument. Call with Idea.saveToStorage(newIdea) in main.js
