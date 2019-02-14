@@ -12,7 +12,6 @@ var cardBodies = document.querySelector('.idea-body')
 // var ideaCardQuality = document.querySelector('.idea-quality')
 var ideaArea = document.querySelector('#idea-area')
 var ideaTemplate = document.querySelector('template')
-// var ideaCard = document.querySelector('#idea-area')
 
 /*---------- Global Variables ----------*/
 
@@ -24,11 +23,6 @@ searchInput.addEventListener('input', searchIdeas)
 // downvoteBtn.addEventListener('click', downvoteIdea)
 ideaArea.addEventListener('click', removeIdeaCard)
 ideaArea.addEventListener('focusout', saveEdits)
-
-// ideaCardTitle.addEventListener('blur', saveEdits)
-// ideaCardBody.addEventListener('blur', saveEdits)
-
-
 
 /*---------- Functions -----------------*/
 function searchIdeas() {
@@ -65,9 +59,8 @@ function addIdeaCard(idea) {
 }
 
 function saveEdits(e) {
-  console.log('test')
   var ideasString = localStorage.ideas || '[]'
-  ideas = JSON.parse(ideasString);
+  var ideas = JSON.parse(ideasString);
   var i = getIdeaIndex(e, ideas);
   var ideaToChange = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
   ideaToChange.updateContent(e.target.innerText, e.target.classList);
@@ -81,7 +74,8 @@ function getIdeaIndex(e, ideas) {
   var index = ideas.findIndex(function(idea) {
     return idea.id === parentID
   });
-  return index;
+  console.log(index);
+  return parseInt(index);
 }
 
 function upvoteIdea() {
@@ -93,9 +87,17 @@ function downvoteIdea() {
 }
 
 function removeIdeaCard(e) {
-  if (e.target.className === 'delete-icon') {
-    e.target.closest('article').remove()
+  if (e.target.className ==='delete-icon') {
+    e.target.closest('article').remove();
+    var ideasString = localStorage.ideas || '[]'
+    var ideas = JSON.parse(ideasString);
+    var i = getIdeaIndex(e, ideas);
+    var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
+    ideaToDelete.deleteFromStorage(i);
   }
+
+
+
 }
 
 function addExistingCards() {
