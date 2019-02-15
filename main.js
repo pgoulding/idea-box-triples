@@ -13,7 +13,7 @@ searchInput.addEventListener('input', searchIdeas)
 // All other listeners applied directly to each Idea in addIdeaListeners()
 
 /*---------- Global Variables -----------*/
-var qualities = ['Swill', 'Plausible', 'Genius'];
+var qualities = ['Swill', 'Plausible', 'Genius']; 
 
 /*---------- Functions -----------------*/
 function searchIdeas() {
