@@ -82,7 +82,7 @@ main {
 .wrapper {
   max-width: 1200px;
   margin: auto;
-  padding-bottom: 1px;
+  /* padding-bottom: 1px; */
 }
 
 form {
@@ -161,7 +161,7 @@ textarea {
 }
 
 .idea-title {
-  margin: 25px;
+  margin: 20px 25px;
   color: #5D5C6B;
   font-size: 25px;
 }
@@ -219,12 +219,47 @@ textarea {
 }
 
 /*---------- Media Queries ---------*/
-@media screen and (max-width: 1024px){
+
+@media only screen and (max-width: 768px) {
+
+  #search-bar {
+    width: 50%;
+  }
+
+  .input-wrapper,
+  #save-button,
+  .idea-card {
+    width: 70%;
+  }
 
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 500px){
 
-}
-@media screen and (max-width: 440px){
+  header {
+    padding-bottom: 20px;
+  }
 
+  .header-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #search-bar {
+    width: 100%;
+  }
+
+  .input-wrapper,
+  #save-button,
+  .idea-card {
+    width: 80%;
+  }
+
+  .idea-title,
+  .idea-body {
+    margin: 15px;
+  }
+
+  .idea-votes {
+    padding: 15px;
+  }
 }
