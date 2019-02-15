@@ -13,18 +13,15 @@ searchInput.addEventListener('input', searchIdeas)
 // All other listeners applied directly to each Idea in addIdeaListeners()
 
 /*---------- Global Variables -----------*/
-var qualities = ['Swill', 'Plausible', 'Genius']; 
+var qualities = ['Swill', 'Plausible', 'Genius'];
 
 /*---------- Functions -----------------*/
 function searchIdeas() {
-  var searchResults = []
   var searchQuery = searchInput.value.toLowerCase()
   var ideas = getIdeas();
-  ideas.forEach(function(idea) {
-    if(idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery)) {
-      searchResults.push(idea)
-    }
-  })
+  var searchResults = ideas.filter(function(idea) {
+    return idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery);
+  });
   ideaArea.innerHTML = '';
   searchResults.forEach(function(idea) {
     addIdeaCard(idea)
