@@ -58,9 +58,14 @@ function addIdeaCard(idea) {
   bodyInput.value = ''
 }
 
-function saveEdits(e) {
+function getIdeas() {
   var ideasString = localStorage.ideas || '[]'
   var ideas = JSON.parse(ideasString);
+  return ideas;
+}
+
+function saveEdits(e) {
+  var ideas = getIdeas();
   var i = getIdeaIndex(e, ideas);
   var ideaToChange = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
   ideaToChange.updateContent(e.target.innerText, e.target.classList);
@@ -89,17 +94,16 @@ function downvoteIdea() {
 function removeIdeaCard(e) {
   if (e.target.className ==='delete-icon') {
     e.target.closest('article').remove();
-    var ideasString = localStorage.ideas || '[]'
-    var ideas = JSON.parse(ideasString);
+    var ideas = getIdeas();
     var i = getIdeaIndex(e, ideas);
     var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
     ideaToDelete.deleteFromStorage(i);
   }
+
 }
 
 function addExistingCards() {
-  var ideas = localStorage.ideas || '[]'
-  ideas = JSON.parse(ideas)
+  var ideas = getIdeas();
   ideas.forEach(function(idea) {
     var existingIdea = new Idea(idea.id, idea.title, idea.body, idea.quality)
     addIdeaCard(existingIdea);

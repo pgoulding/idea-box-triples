@@ -7,13 +7,11 @@ class Idea {
     this.quality = 0;
   }
 
-  deleteFromStorage(parentID, i) {
+  deleteFromStorage(i) {
     var ideasString = localStorage.ideas || '[]'
     var ideas = JSON.parse(ideasString);
     ideas.splice(i, 1);
-    console.log(i);
-    console.log(ideas);
-    localStorage.ideas = JSON.stringify(ideas)
+    localStorage.ideas = JSON.stringify(ideas);
   }
 
   // Create static method and pass idea as argument. Call with Idea.saveToStorage(newIdea) in main.js
