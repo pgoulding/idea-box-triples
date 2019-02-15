@@ -1,39 +1,55 @@
 class Idea {
 
-  constructor(id, title, body, quality) {
+  constructor(id, title, body, quality = 0) {
     this.id = id;
     this.title = title;
     this.body = body;
-    this.quality = 0;
+    this.quality = quality;
   }
 
-  deleteFromStorage(i) {
-    var ideasString = localStorage.ideas || '[]'
-    var ideas = JSON.parse(ideasString);
-    ideas.splice(i, 1);
-    localStorage.ideas = JSON.stringify(ideas);
+  deleteFromStorage(ideas, index) {
+    ideas.splice(index, 1);
   }
 
   // Create static method and pass idea as argument. Call with Idea.saveToStorage(newIdea) in main.js
-  saveToStorage() {
-    var ideasString = localStorage.ideas || '[]'
-    var ideas = JSON.parse(ideasString)
+  saveToStorage(ideas) {
     ideas.push(this)
-    localStorage.ideas = JSON.stringify(ideas)
   }
 
   updateContent(text, key) {
-    var ideasString = localStorage.ideas || '[]'
-    var ideas = JSON.parse(ideasString)
     if(key[0] === 'idea-title') {
-      this.title = text
+      this.updateTitle(text);
     } else {
-      this.body = text
+      this.updateBody(text);
     }
   }
 
-  updateQuality() {
+  updateQuality(vote) {
+    if (vote === 'upvote') {
+      this.upvote();
+    } else {
+      this.downvote();
+    }
+  }
 
+  updateTitle(text) {
+    this.title = text;
+  }
+
+  updateBody(text) {
+    this.body = text;
+  }
+
+  upvote() {
+    if(this.quality < 2) {
+      this.quality++;
+    }
+  }
+
+  downvote() {
+    if(this.quality > 0) {
+      this.quality--;
+    }
   }
 
 }
