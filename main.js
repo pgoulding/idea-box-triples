@@ -14,8 +14,7 @@ searchInput.addEventListener('input', searchIdeas);
 /*---------- Functions -----------------*/
 function getIdeas() {
   var ideasString = localStorage.ideas || '[]';
-  var ideas = JSON.parse(ideasString);
-  return ideas;
+  return JSON.parse(ideasString);
 }
 
 function storeIdeas(ideas) {
@@ -71,8 +70,7 @@ function getIdeaIndex(e, ideas) {
 }
 
 function reinstateIdea(ideas, i) {
-  var idea = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
-  return idea;
+  return new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
 }
 
 function saveEdits(e) {
