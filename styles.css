@@ -7,10 +7,10 @@
 }
 
 body, html{
-  width: 100vw;
-  height: 100%;
-  font-family: 'Open Sans', sans-serif;
   background-color: #FBFDFD;
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  width: 100vw;
 }
 
 /*---------- Header ----------------*/
@@ -21,19 +21,19 @@ header {
 }
 
 .header-wrapper {
-  max-width: 1200px;
-  margin: auto;
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  margin: auto;
+  max-width: 1200px;
 }
 
 h1 {
   color: #AFA5CD;
-  text-transform: lowercase;
   font-size: 45px;
   margin: 15px 0;
+  text-transform: lowercase;
 }
 
 h1 span {
@@ -41,23 +41,23 @@ h1 span {
 }
 
 #search-bar {
-  height: 35px;
-  width: 400px;
+  align-items: center;
   background-color: lightgrey;
+  border-radius: 5px;
+  border: 2px solid lightgrey;
   display: flex;
   flex-direction: row;
+  height: 35px;
   justify-content: space-between;
-  align-items: center;
-  border: 2px solid lightgrey;
-  border-radius: 5px;
+  width: 400px;
 }
 
 #search-bar p {
   display: inline;
-  margin: 0;
   height: 100%;
-  width: 10%;
+  margin: 0;
   text-align: center;
+  width: 10%;
 }
 
 .search-icon {
@@ -66,10 +66,10 @@ h1 span {
 }
 
 #search-bar input {
-  height: 100%;
-  width: 90%;
-  padding-left: 10px;
   border-style: none;
+  height: 100%;
+  padding-left: 10px;
+  width: 90%;
 }
 
 /*---------- Body ----------------*/
@@ -80,9 +80,8 @@ main {
 }
 
 .wrapper {
-  max-width: 1200px;
   margin: auto;
-  /* padding-bottom: 1px; */
+  max-width: 1200px;
 }
 
 form {
@@ -90,8 +89,8 @@ form {
 }
 
 form > * {
-  width: 60%;
   margin: auto;
+  width: 60%;
 }
 
 .input-wrapper > * {
@@ -100,17 +99,17 @@ form > * {
 }
 
 label {
+  color:  #5D5C6B;
   font-size: 23px;
   font-weight: 300;
-  color:  #5D5C6B;
   padding: 25px 0 10px 0;
 }
 
 input,
 textarea {
   border-radius: 5px;
-  font-weight: 300;
   color: #888;
+  font-weight: 300;
 }
 
 input:focus,
@@ -120,75 +119,75 @@ textarea:focus {
 
 #title-input {
   border-radius: 5px;
-  height: 50px;
   border: 2px solid lightgrey;
+  height: 50px;
   padding-left: 15px;
 }
 
 textarea {
   border: 2px solid lightgrey;
-  resize: none;
   padding-left: 15px;
   padding-top: 15px;
+  resize: none;
 }
 
 #save-button {
-  height: 50px;
-  width: 60%;
   background-color: #5D5C6B;
-  margin-top: 25px;
-  display: block;
-  color: white;
-  font-weight: 700;
-  font-size: 23px;
-  border: 0;
   border-radius: 5px;
+  border: 0;
+  color: white;
+  display: block;
+  font-size: 23px;
+  font-weight: 700;
+  height: 50px;
+  margin-top: 25px;
+  width: 60%;
 }
 
 #idea-area {
-  padding: 25px 0;
   height: 100%;
-  max-width: 1200px;
   margin: auto;
+  max-width: 1200px;
+  padding: 25px 0;
 }
 
 .idea-card {
-  border: 2px solid lightgrey;
-  width: 60%;
   background-color: white;
-  margin: auto;
   border-radius: 5px;
+  border: 2px solid lightgrey;
+  margin: auto;
+  width: 60%;
 }
 
 .idea-title {
-  margin: 20px 25px;
   color: #5D5C6B;
   font-size: 25px;
+  margin: 20px 25px;
 }
 
 .idea-body {
-  margin: 20px 25px;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 1.25;
   color: #7C7879;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 20px 25px;
 }
 
 .idea-votes {
-  height: 40px;
+  align-items: center;
   border-top: 2px solid lightgrey;
   display: flex;
   flex-direction: row;
+  height: 40px;
   justify-content: space-between;
-  align-items: center;
   padding: 0 25px;
 }
 
 .vote-container {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
 }
 
 .vote-container img {
@@ -197,10 +196,10 @@ textarea {
 }
 
 .delete-container {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
 }
 
 .delete-icon {
@@ -208,10 +207,10 @@ textarea {
 }
 
 .vote-container p {
-  display: inline-block;
-  margin: 0;
-  font-weight: 800;
   color: #7C7879;
+  display: inline-block;
+  font-weight: 800;
+  margin: 0;
 }
 
 .idea-card {
