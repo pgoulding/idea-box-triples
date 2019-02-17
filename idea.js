@@ -7,28 +7,16 @@ class Idea {
     this.quality = quality;
   }
 
-  deleteFromStorage(ideas, index) {
-    ideas.splice(index, 1);
-  }
-
   // Create static method and pass idea as argument. Call with Idea.saveToStorage(newIdea) in main.js
   saveToStorage(ideas) {
-    ideas.push(this)
+    ideas.push(this);
   }
 
-  updateContent(text, key) {
-    if(key[0] === 'idea-title') {
+  updateContent(text, classList) {
+    if(classList[0] === 'idea-title') {
       this.updateTitle(text);
     } else {
       this.updateBody(text);
-    }
-  }
-
-  updateQuality(vote) {
-    if (vote === 'upvote') {
-      this.upvote();
-    } else {
-      this.downvote();
     }
   }
 
@@ -38,6 +26,14 @@ class Idea {
 
   updateBody(text) {
     this.body = text;
+  }
+
+  updateQuality(vote) {
+    if (vote === 'upvote') {
+      this.upvote();
+    } else {
+      this.downvote();
+    }
   }
 
   upvote() {
@@ -52,4 +48,7 @@ class Idea {
     }
   }
 
+  deleteFromStorage(ideas, index) {
+    ideas.splice(index, 1);
+  }
 }
