@@ -233,7 +233,12 @@ textarea {
   }
 
 }
+
 @media screen and (max-width: 500px){
+
+  body {
+    min-width: 275px;
+  }
 
   header {
     padding-bottom: 20px;
