@@ -85,7 +85,7 @@ main {
 }
 
 form {
-  padding-bottom: 25px;
+  padding-bottom: 5px;
 }
 
 form > * {
@@ -142,7 +142,7 @@ textarea {
   font-size: 23px;
   font-weight: 700;
   height: 50px;
-  margin-top: 25px;
+  margin: 25px auto;
   width: 60%;
 }
 
@@ -160,7 +160,7 @@ textarea {
   height: 100%;
   margin: auto;
   max-width: 1200px;
-  padding: 25px 0;
+  padding: 0px 0px 25px 0;
 }
 
 .idea-card {
