@@ -132,7 +132,8 @@ textarea {
   resize: none;
 }
 
-#save-button {
+#save-button,
+.see-more-btn {
   background-color: #5D5C6B;
   border-radius: 5px;
   border: 0;
@@ -143,6 +144,16 @@ textarea {
   height: 50px;
   margin-top: 25px;
   width: 60%;
+}
+
+#save-button:hover,
+.see-more-btn:hover {
+  background-color: #96939B;
+}
+
+#save-button:active,
+.see-more-btn:active {
+  background-color: #5D5C6B;
 }
 
 #idea-area {
@@ -218,19 +229,6 @@ textarea {
   margin-bottom: 25px;
 }
 
-.see-more-btn {
-  background-color: #5D5C6B;
-  border-radius: 5px;
-  border: 0;
-  color: white;
-  display: block;
-  font-size: 23px;
-  font-weight: 700;
-  height: 50px;
-  margin-top: 25px;
-  width: 70%;
-}
-
 /*---------- Media Queries ---------*/
 
 @media only screen and (max-width: 768px) {
@@ -241,6 +239,7 @@ textarea {
 
   .input-wrapper,
   #save-button,
+  .see-more-btn,
   .idea-card {
     width: 70%;
   }
@@ -268,6 +267,7 @@ textarea {
 
   .input-wrapper,
   #save-button,
+  .see-more-btn,
   .idea-card {
     width: 80%;
   }

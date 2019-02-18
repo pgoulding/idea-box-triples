@@ -14,7 +14,6 @@ class Idea {
 
   updateContent(text, classList) {
     if(classList[0] === 'idea-title') {
-      console.log('classlist:', classList)
       this.updateTitle(text);
     } else {
       this.updateBody(text);
