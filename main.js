@@ -21,22 +21,22 @@ function storeIdeas(ideas) {
   localStorage.ideas = JSON.stringify(ideas);
 }
 
-function addExistingCards() {
-  ideaArea.innerHTML = '';
-  var ideas = getIdeas();
-  ideas.forEach(function(idea) {
-    var existingIdea = new Idea(idea.id, idea.title, idea.body, idea.quality);
-    addIdeaCard(existingIdea);
-  })
-}
+// function addExistingCards() {
+//   ideaArea.innerHTML = '';
+//   var ideas = getIdeas();
+//   ideas.forEach(function(idea) {
+//     var existingIdea = new Idea(idea.id, idea.title, idea.body, idea.quality);
+//     addIdeaCard(existingIdea);
+//   })
+// }
 
 function createIdea(e) {
   e.preventDefault();
   var ideas = getIdeas();
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
   newIdea.saveToStorage(ideas);
-  addIdeaCard(newIdea);
   storeIdeas(ideas);
+  addRecentIdeas();
 }
 
 function addIdeaListeners(clone) {
@@ -93,7 +93,7 @@ function vote(e) {
   };
   ideas[i] = ideaToVote;
   storeIdeas(ideas);
-  addExistingCards();
+  addRecentIdeas();
 }
 
 function searchIdeas() {
@@ -108,6 +108,17 @@ function searchIdeas() {
   });
 }
 
+function addRecentIdeas() {
+  var ideas = getIdeas();
+  var endingIndex = parseInt(ideas.length);
+  var firstIndex = endingIndex - 10;
+  var recentIdeas = ideas.slice(firstIndex, endingIndex);
+  ideaArea.innerHTML = '';
+  recentIdeas.forEach(function(idea) {
+    addIdeaCard(idea)
+  });
+}
+
 function removeIdeaCard(e) {
   if (e.target.className === 'delete-icon') {
     e.target.closest('article').remove();
@@ -115,8 +126,10 @@ function removeIdeaCard(e) {
     var i = getIdeaIndex(e, ideas);
     var ideaToDelete = reinstateIdea(ideas, i);
     ideaToDelete.deleteFromStorage(ideas, i);
-    storeIdeas(ideas);
   };
+  storeIdeas(ideas);
+  addRecentIdeas();
 }
 
-window.onload = addExistingCards();
+// window.onload = addExistingCards();
+window.onload = addRecentIdeas();

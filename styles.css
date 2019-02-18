@@ -113,7 +113,8 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+button:focus {
   outline: 0;
 }
 
@@ -215,6 +216,19 @@ textarea {
 
 .idea-card {
   margin-bottom: 25px;
+}
+
+.see-more-btn {
+  background-color: #5D5C6B;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  display: block;
+  font-size: 23px;
+  font-weight: 700;
+  height: 50px;
+  margin-top: 25px;
+  width: 70%;
 }
 
 /*---------- Media Queries ---------*/
