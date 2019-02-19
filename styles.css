@@ -86,7 +86,7 @@ main {
 }
 
 form {
-  padding-bottom: 25px;
+  padding-bottom: 5px;
 }
 
 form > * {
@@ -114,7 +114,8 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+button:focus {
   outline: 0;
 }
 
@@ -132,7 +133,8 @@ textarea {
   resize: none;
 }
 
-#save-button {
+#save-button,
+.see-more-btn {
   background-color: #5D5C6B;
   border-radius: 5px;
   border: 0;
@@ -141,15 +143,25 @@ textarea {
   font-size: 23px;
   font-weight: 700;
   height: 50px;
-  margin-top: 25px;
+  margin: 25px auto;
   width: 60%;
+}
+
+#save-button:hover,
+.see-more-btn:hover {
+  background-color: #96939B;
+}
+
+#save-button:active,
+.see-more-btn:active {
+  background-color: #5D5C6B;
 }
 
 #idea-area {
   height: 100%;
   margin: auto;
   max-width: 1200px;
-  padding: 25px 0;
+  padding: 0px 0px 25px 0;
 }
 
 .idea-card {
@@ -228,6 +240,7 @@ textarea {
 
   .input-wrapper,
   #save-button,
+  .see-more-btn,
   .idea-card {
     width: 70%;
   }
@@ -251,6 +264,7 @@ textarea {
 
   .input-wrapper,
   #save-button,
+  .see-more-btn,
   .idea-card {
     width: 80%;
   }

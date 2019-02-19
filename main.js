@@ -4,11 +4,13 @@ var searchInput = document.querySelector('#search-input');
 var titleInput = document.querySelector('#title-input');
 var bodyInput = document.querySelector('#body-input');
 var saveBtn = document.querySelector('#save-button');
+var seeMoreBtn = document.querySelector('.see-more-btn');
 var ideaArea = document.querySelector('#idea-area');
 var ideaTemplate = document.querySelector('template');
 
 /*---------- Event Listeners -----------*/
 saveBtn.addEventListener('click', createIdea);
+seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
 
 /*---------- Functions -----------------*/
@@ -17,17 +19,21 @@ function getIdeas() {
   return JSON.parse(ideasString);
 }
 
-function storeIdeas(ideas) {
-  localStorage.ideas = JSON.stringify(ideas);
+function getIdeaIndex(e, ideas) {
+  var parent = e.target.closest('article');
+  var parentID = parseInt(parent.dataset.id);
+  var index = ideas.findIndex(function(idea) {
+    return idea.id === parentID;
+  });
+  return index;
 }
 
-function addExistingCards() {
-  ideaArea.innerHTML = '';
-  var ideas = getIdeas();
-  ideas.forEach(function(idea) {
-    var existingIdea = new Idea(idea.id, idea.title, idea.body, idea.quality);
-    addIdeaCard(existingIdea);
-  })
+function reinstateIdea(ideas, i) {
+  return new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
+}
+
+function storeIdeas(ideas) {
+  localStorage.ideas = JSON.stringify(ideas);
 }
 
 function createIdea(e) {
@@ -35,8 +41,8 @@ function createIdea(e) {
   var ideas = getIdeas();
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
   newIdea.saveToStorage(ideas);
-  addIdeaCard(newIdea);
   storeIdeas(ideas);
+  addRecentIdeas(10);
 }
 
 function addIdeaListeners(clone) {
@@ -60,19 +66,6 @@ function addIdeaCard(idea) {
   bodyInput.value = '';
 }
 
-function getIdeaIndex(e, ideas) {
-  var parent = e.target.closest('article');
-  var parentID = parseInt(parent.dataset.id);
-  var index = ideas.findIndex(function(idea) {
-    return idea.id === parentID;
-  });
-  return index;
-}
-
-function reinstateIdea(ideas, i) {
-  return new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].quality);
-}
-
 function saveEdits(e) {
   var ideas = getIdeas();
   var i = getIdeaIndex(e, ideas);
@@ -93,10 +86,11 @@ function vote(e) {
   };
   ideas[i] = ideaToVote;
   storeIdeas(ideas);
-  addExistingCards();
+  addRecentIdeas(10);
 }
 
-function searchIdeas() {
+function searchIdeas(e) {
+  e.preventDefault();
   var searchQuery = searchInput.value.toLowerCase();
   var ideas = getIdeas();
   var searchResults = ideas.filter(function(idea) {
@@ -108,6 +102,26 @@ function searchIdeas() {
   });
 }
 
+function addRecentIdeas(numIdeas) {
+  ideaArea.innerHTML = '';
+  var ideas = getIdeas();
+  var recentIdeas = ideas.slice(ideas.length - numIdeas, ideas.length);
+  recentIdeas.forEach(function(idea) {
+    addIdeaCard(idea)
+  });
+}
+
+function toggleCardView(e) {
+  event.preventDefault();
+  if (seeMoreBtn.innerText === 'See More') {
+    addRecentIdeas(getIdeas().length);
+    seeMoreBtn.innerText = 'See Less';
+  } else {
+    addRecentIdeas(10);
+    seeMoreBtn.innerText = 'See More';
+  }
+}
+
 function removeIdeaCard(e) {
   if (e.target.className === 'delete-icon') {
     e.target.closest('article').remove();
@@ -115,8 +129,9 @@ function removeIdeaCard(e) {
     var i = getIdeaIndex(e, ideas);
     var ideaToDelete = reinstateIdea(ideas, i);
     ideaToDelete.deleteFromStorage(ideas, i);
-    storeIdeas(ideas);
   };
+  storeIdeas(ideas);
+  addRecentIdeas(10);
 }
 
-window.onload = addExistingCards();
+window.onload = addRecentIdeas(10);
