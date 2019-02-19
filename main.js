@@ -8,6 +8,9 @@ var seeMoreBtn = document.querySelector('.see-more-btn');
 var ideaArea = document.querySelector('#idea-area');
 var ideaTemplate = document.querySelector('template');
 
+/*---------- Global Variables -----------*/
+var qualities = ['Swill', 'Plausible', 'Genius'];
+
 /*---------- Event Listeners -----------*/
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
@@ -55,15 +58,19 @@ function addIdeaListeners(clone) {
 
 function addIdeaCard(idea) {
   var ideaClone = ideaTemplate.content.cloneNode(true)
-  var qualities = ['Swill', 'Plausible', 'Genius'];
-  ideaClone.querySelector('article').dataset.id = idea.id;
-  ideaClone.querySelector('.idea-title').innerText = idea.title;
-  ideaClone.querySelector('.idea-body').innerText = idea.body;
-  ideaClone.querySelector('.idea-quality').innerText = qualities[idea.quality];
+  addIdeaData(ideaClone, idea);
   addIdeaListeners(ideaClone);
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild);
   titleInput.value = '';
   bodyInput.value = '';
+}
+
+function addIdeaData(clone, idea) {
+  clone.querySelector('article').dataset.id = idea.id;
+  clone.querySelector('.idea-title').innerText = idea.title;
+  clone.querySelector('.idea-body').innerText = idea.body;
+  clone.querySelector('.idea-quality').innerText = qualities[idea.quality];
+
 }
 
 function saveEdits(e) {
