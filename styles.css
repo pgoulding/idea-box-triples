@@ -9,9 +9,10 @@
 body, html{
   background-color: #FBFDFD;
   font-family: 'Open Sans', sans-serif;
-  height: 100%;
+  height: auto;
   width: 100vw;
   min-width: 320px;
+  padding-bottom: 15px;
 }
 
 /*---------- Header ----------------*/
@@ -79,7 +80,6 @@ h1 span {
 main {
   background-color: #EEF2F2;
   height: auto;
-  padding-bottom: 25px;
 }
 
 .wrapper {
@@ -151,6 +151,7 @@ textarea {
 
 .see-more-btn {
  margin: 0 auto;
+ width: 200px;
 }
 
 #save-button:hover,
@@ -164,10 +165,10 @@ textarea {
 }
 
 #idea-area {
-  height: 100%;
+  height: auto;
   margin: auto;
   max-width: 1200px;
-  padding: 0px 0px 25px 0;
+  padding: 25px 0 0 0;
 }
 
 .idea-card {
