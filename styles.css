@@ -165,10 +165,6 @@ textarea {
   width: 60%;
 }
 
-#save-button:hover {
-  background-color: #524649;
-}
-
 .see-more-btn {
  margin: 0 auto;
  width: 200px;
@@ -176,7 +172,7 @@ textarea {
 
 #save-button:hover,
 .see-more-btn:hover {
-  background-color: #5D5C6B;
+  background-color: #96939B;
 }
 
 #save-button:active,
