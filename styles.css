@@ -107,7 +107,7 @@ select:focus {
   outline: none;
 }
 
-.input-wrapper {
+.input-wrapper { 
   width: 60%;
   margin: auto;
 }

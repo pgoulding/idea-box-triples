@@ -150,7 +150,7 @@ function removeIdeaCard(e) {
   addRecentIdeas(10);
 }
 
-function disableSave(e) { 
+function disableSave() {
   if (titleInput.value !== '' && bodyInput.value !== '')
     {
       saveBtn.disabled = false;
