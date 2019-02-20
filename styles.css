@@ -174,7 +174,9 @@ textarea {
   max-width: 1200px;
   padding: 25px 0 0 0;
 }
-
+#quality-select-list{
+  margin: auto;
+}
 .idea-card {
   background-color: white;
   border-radius: 5px;
@@ -238,9 +240,16 @@ textarea {
   justify-content: flex-end;
 }
 
+.downvote-icon,
+.upvote-icon,
 .delete-icon {
   height: 25px;
 }
+.downvote-icon:hover,
+.upvote-icon:hover,
+.delete-icon:hover{
+  opacity: .8;
+} 
 
 .vote-container p {
   color: #7C7879;
