@@ -49,7 +49,7 @@ function createIdea(e) {
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
   newIdea.saveToStorage(ideas);
   storeIdeas(ideas);
-  addRecentIdeas(10);
+  displayCards();
 }
 
 function addIdeaListeners(clone) {
@@ -98,7 +98,15 @@ function vote(e) {
   };
   ideas[i] = ideaToVote;
   storeIdeas(ideas);
-  addRecentIdeas(10);
+  displayCards();
+}
+
+function displayCards() {
+  if(seeMoreBtn.innerText === 'See More') {
+    getRecentIdeas(10);
+  } else {
+    getRecentIdeas(getIdeas().length);
+  }
 }
 
 function searchIdeas() {
@@ -111,18 +119,18 @@ function searchIdeas() {
   ideaArea.innerHTML = '';
   searchResults.forEach(function(idea) {
     addIdeaCard(idea);
-  }); 
+  });
 }
 
 function filterByQuality() {
   var filteredQuality = qualityDropDown.value;
   if (filteredQuality === '--') {
-    addRecentIdeas(getIdeas().length);
+    getRecentIdeas(getIdeas().length);
   } else {
     var ideas = getIdeas();
     var filterQuality = ideas.filter(function(idea) {
       return idea.quality === parseInt(filteredQuality);
-    }); 
+    });
     ideaArea.innerHTML = '';
     filterQuality.forEach(function(idea) {
       addIdeaCard(idea);
@@ -130,22 +138,28 @@ function filterByQuality() {
   }
 }
 
-function addRecentIdeas(numIdeas) {
+function getRecentIdeas(numIdeas) {
   ideaArea.innerHTML = '';
   var ideas = getIdeas();
-  var recentIdeas = ideas.slice(ideas.length - numIdeas, ideas.length);
-  recentIdeas.forEach(function(idea) {
-    addIdeaCard(idea)
-  });
+  if(ideas.length <= 10) {
+    ideas.forEach(function(idea) {
+      addIdeaCard(idea)
+    });
+  } else {
+    var recentIdeas = ideas.slice(ideas.length - numIdeas, ideas.length);
+    recentIdeas.forEach(function(idea) {
+      addIdeaCard(idea)
+    });
+  }
 }
 
 function toggleCardView(e) {
   e.preventDefault();
   if (seeMoreBtn.innerText === 'See More') {
-    addRecentIdeas(getIdeas().length);
+    getRecentIdeas(getIdeas().length);
     seeMoreBtn.innerText = 'See Less';
   } else {
-    addRecentIdeas(10);
+    getRecentIdeas(10);
     seeMoreBtn.innerText = 'See More';
   }
 }
@@ -157,7 +171,7 @@ function removeIdeaCard(e) {
   var ideaToDelete = reinstateIdea(ideas, i);
   ideaToDelete.deleteFromStorage(ideas, i);
   storeIdeas(ideas);
-  addRecentIdeas(10);
+  displayCards();
 }
 
 function disableSave() {
@@ -169,4 +183,4 @@ function disableSave() {
     }
 }
 
-window.onload = addRecentIdeas(10);
+window.onload = getRecentIdeas(10);
