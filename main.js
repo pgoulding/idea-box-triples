@@ -8,6 +8,7 @@ var seeMoreBtn = document.querySelector('.see-more-btn');
 var ideaArea = document.querySelector('#idea-area');
 var ideaTemplate = document.querySelector('template');
 var qualityDropDown = document.querySelector('#quality-select-list');
+var qualityText = document.querySelector('idea-quality');
 
 /*---------- Global Variables -----------*/
 var cardsToShow;
@@ -91,6 +92,7 @@ function vote(e) {
   var ideaToVote = reinstateIdea(ideas, i);
   if (e.target.className === 'upvote-icon') {
     ideaToVote.updateQuality('upvote');
+    // qualityText.innerHTML
   } else {
     ideaToVote.updateQuality('downvote');
   }
@@ -124,6 +126,7 @@ function filterByQuality() {
     var filterQuality = ideas.filter(idea => idea.quality === parseInt(quality));
     ideaArea.innerHTML = '';
     filterQuality.forEach(idea => addIdeaCard(idea));
+    seeMoreBtn.style.display = 'none';
   }
 }
 
@@ -132,9 +135,11 @@ function getRecentIdeas(numIdeas) {
   var ideas = getIdeas();
   if(ideas.length <= 10) {
     ideas.forEach(idea => addIdeaCard(idea));
+    seeMoreBtn.style.display = 'none';
   } else {
     var recentIdeas = ideas.slice(ideas.length - numIdeas, ideas.length);
     recentIdeas.forEach(idea => addIdeaCard(idea));
+    seeMoreBtn.style.display = 'block';
   }
 }
 
