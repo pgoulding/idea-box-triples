@@ -11,12 +11,12 @@
   <link rel="stylesheet" href="normalize.css">
   <!-- Main CSS -->
   <link rel="stylesheet" href="styles.css">
-  <title>IdeaBox</title>
+  <title>IdeaBox Triples</title>
 </head>
 <body>
   <header>
     <div class="header-wrapper">
-      <h1>Idea<span>Box</span></h1>
+      <h1>Ideabox<span>triples</span></h1>
       <div id="search-bar">
         <input type="text" id="search-input" placeholder="Search">
         <p><i class="material-icons search-icon">search</i></p>
@@ -35,8 +35,22 @@
           <textarea name="body" id="body-input" rows="6"></textarea>
         </div>
         <input type="submit" value="Save" id="save-button">
+      <legend>Quality Level</legend>
+      <select id="quality-select-list" onchange="qualityCategory(value)">
+        <option value="0" id="swill-select">Swill</option>
+        <option value="1" id="plausible-select">Plausible</option>
+        <option value="3" id="genius-select">Genius</option>
+      </select>
       </form>
     </div>
+<!--     <form class="quality-category-dropdown">
+      <legend>Quality Level</legend>
+      <select id="quality-select-list">
+        <option value="0" id="swill-select">Swill</option>
+        <option value="1" id="plausible-select">Plausible</option>
+        <option value="3" id="genius-select">Genius</option>
+      </select>
+    </form> -->
   </main>
   <section id="idea-area" class="wrapper"></section>
   <!-- Template -->

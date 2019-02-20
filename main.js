@@ -6,10 +6,12 @@ var bodyInput = document.querySelector('#body-input');
 var saveBtn = document.querySelector('#save-button');
 var ideaArea = document.querySelector('#idea-area');
 var ideaTemplate = document.querySelector('template');
+var qualityDropDown = document.querySelector('#quality-select-list');
 
 /*---------- Event Listeners -----------*/
 saveBtn.addEventListener('click', createIdea);
 searchInput.addEventListener('input', searchIdeas);
+qualityDropDown.addEventListener('onchange', qualityCategory(0));
 
 /*---------- Functions -----------------*/
 function getIdeas() {
@@ -100,6 +102,7 @@ function searchIdeas() {
   var searchQuery = searchInput.value.toLowerCase();
   var ideas = getIdeas();
   var searchResults = ideas.filter(function(idea) {
+    console.log(idea)
     return idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery);
   });
   ideaArea.innerHTML = '';
@@ -107,6 +110,20 @@ function searchIdeas() {
     addIdeaCard(idea);
   });
 }
+
+function qualityCategory(value){
+  var ideaValue = qualityDropDown.value
+  console.log(ideaValue, value)
+  var ideas = getIdeas();
+  var filterQuality = ideas.filter(function(idea) {
+    return idea.quality === ideaValue;
+  }) 
+    ideaArea.innerHTML = '';
+    console.log(filterQuality);
+    filterQuality.forEach(function(idea) {
+    addIdeaCard(idea);
+})
+};
 
 function removeIdeaCard(e) {
   if (e.target.className === 'delete-icon') {
@@ -119,4 +136,8 @@ function removeIdeaCard(e) {
   };
 }
 
+
+
 window.onload = addExistingCards();
+
+// qualityCategory()
