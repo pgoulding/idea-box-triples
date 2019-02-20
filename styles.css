@@ -156,12 +156,16 @@ textarea {
 
 #save-button:hover,
 .see-more-btn:hover {
-  background-color: #96939B;
+  background-color: #5D5C6B;
 }
 
 #save-button:active,
 .see-more-btn:active {
   background-color: #5D5C6B;
+}
+
+#save-button:disabled {
+  background-color: #96939B;
 }
 
 #idea-area {

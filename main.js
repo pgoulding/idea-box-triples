@@ -12,6 +12,8 @@ var ideaTemplate = document.querySelector('template');
 var qualities = ['Swill', 'Plausible', 'Genius'];
 
 /*---------- Event Listeners -----------*/
+titleInput.addEventListener('input', disableSave);
+bodyInput.addEventListener('input', disableSave);
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
@@ -63,6 +65,7 @@ function addIdeaCard(idea) {
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild);
   titleInput.value = '';
   bodyInput.value = '';
+  saveBtn.disabled = true;
 }
 
 function addIdeaData(clone, idea) {
@@ -139,6 +142,15 @@ function removeIdeaCard(e) {
   };
   storeIdeas(ideas);
   addRecentIdeas(10);
+}
+
+function disableSave(e) {
+  if (titleInput.value !== '' && bodyInput.value !== '')
+    {
+      saveBtn.disabled = false;
+    } else {
+      saveBtn.disabled = true;
+    }
 }
 
 window.onload = addRecentIdeas(10);
