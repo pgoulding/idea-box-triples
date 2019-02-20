@@ -144,6 +144,9 @@ textarea {
   margin-top: 25px;
   width: 60%;
 }
+#save-button:hover{
+  opacity: .8;
+}
 
 #idea-area {
   height: 100%;
@@ -203,9 +206,16 @@ textarea {
   justify-content: flex-end;
 }
 
+.downvote-icon,
+.upvote-icon,
 .delete-icon {
   height: 25px;
 }
+.downvote-icon:hover,
+.upvote-icon:hover,
+.delete-icon:hover{
+  opacity: .8;
+} 
 
 .vote-container p {
   color: #7C7879;
