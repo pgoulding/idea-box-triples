@@ -10,9 +10,9 @@ body, html{
   background-color: #FBFDFD;
   font-family: 'Open Sans', sans-serif;
   height: auto;
-  width: 100vw;
   min-width: 320px;
   padding-bottom: 15px;
+  width: 100vw;
 }
 
 /*---------- Header ----------------*/
@@ -45,8 +45,8 @@ h1 span {
 #search-bar {
   align-items: center;
   background-color: lightgrey;
-  border-radius: 5px;
   border: 2px solid lightgrey;
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
   height: 35px;
@@ -68,11 +68,11 @@ h1 span {
 }
 
 #search-input {
+  border-radius: 5px 0 0 5px;
   border-style: none;
   height: 100%;
   padding-left: 10px;
   width: 90%;
-  border-radius: 5px 0 0 5px;
 }
 
 /*---------- Body ----------------*/
@@ -93,23 +93,32 @@ form > * {
   width: 60%;
 }
 
-select,
-option {
-  height: 50px;
-  width: 100%;
-  -webkit-appearance: none;
+select {
    -moz-appearance: none;
+  -webkit-appearance: none;
    appearance: none;
+  background-color: white;
+  border: 2px solid lightgrey;
+  height: 50px;
    padding-left: 15px;
+  width: 60%;
 }
 
 select:focus {
   outline: none;
 }
 
-.input-wrapper { 
+hr {
+  border-style: none;
+  border-bottom: 1px solid lightgrey;
+  height: 1px;
   width: 60%;
+  margin-top: 30px;
+}
+
+.input-wrapper {
   margin: auto;
+  width: 60%;
 }
 
 .input-wrapper > * {
@@ -138,8 +147,8 @@ button:focus {
 }
 
 #title-input {
-  border-radius: 5px;
   border: 2px solid lightgrey;
+  border-radius: 5px;
   height: 50px;
   padding-left: 15px;
 }
@@ -154,8 +163,8 @@ textarea {
 #save-button,
 .see-more-btn {
   background-color: #5D5C6B;
-  border-radius: 5px;
   border: 0;
+  border-radius: 5px;
   color: white;
   display: block;
   font-size: 23px;
@@ -195,8 +204,8 @@ textarea {
 }
 .idea-card {
   background-color: white;
-  border-radius: 5px;
   border: 2px solid lightgrey;
+  border-radius: 5px;
   margin: auto;
   width: 60%;
 }
@@ -221,8 +230,8 @@ textarea {
 
 .idea-title:focus,
 .idea-body:focus {
-  border-radius: 5px;
   border: 2px solid lightgrey;
+  border-radius: 5px;
   box-shadow: 0px 0px 2px lightgrey;
   outline: none;
 }

@@ -61,12 +61,8 @@ function addIdeaListeners(clone) {
 }
 
 function addIdeaCard(idea) {
-  var ideaClone = ideaTemplate.content.cloneNode(true)
-  var qualities = ['Swill', 'Plausible', 'Genius'];
-  ideaClone.querySelector('article').dataset.id = idea.id;
-  ideaClone.querySelector('.idea-title').innerText = idea.title;
-  ideaClone.querySelector('.idea-body').innerText = idea.body;
-  ideaClone.querySelector('.idea-quality').innerText = qualities[idea.quality];
+  var ideaClone = ideaTemplate.content.cloneNode(true);
+  addIdeaData(ideaClone, idea);
   addIdeaListeners(ideaClone);
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild);
   titleInput.value = '';
@@ -162,4 +158,3 @@ function disableSave() {
 }
 
 window.onload = addRecentIdeas(10);
-
