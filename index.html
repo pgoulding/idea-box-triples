@@ -16,7 +16,7 @@
 <body>
   <header>
     <div class="header-wrapper">
-      <h1>Idea<span>Box</span></h1>
+      <h1>Ideabox<span>Triples</span></h1>
       <div id="search-bar">
         <input type="text" id="search-input" placeholder="Search">
         <p><i class="material-icons search-icon">search</i></p>
@@ -43,15 +43,6 @@
       </select>
         <input type="submit" value="Save" id="save-button" disabled>
       </form>
-      <div class="input-wrapper">
-        <label for="quality-select-list">Quality</label>
-        <select id="quality-select-list">
-          <option value="--" id="default-select">-- Select --</option>
-          <option value="0" id="swill-select">Swill</option>
-          <option value="1" id="plausible-select">Plausible</option>
-          <option value="2" id="genius-select">Genius</option>
-        </select>
-      </div>
     </div>
 <!--     <form class="quality-category-dropdown">
       <legend>Quality Level</legend>
@@ -62,6 +53,18 @@
       </select>
     </form> -->
   </main>
+  <section id="quality-section" class="wrapper">
+    <div class="input-wrapper">
+      <label for="quality-select-list">Quality</label>
+      <select id="quality-select-list">
+        <option value="--" id="default-select">-- Select --</option>
+        <option value="0" id="swill-select">Swill</option>
+        <option value="1" id="plausible-select">Plausible</option>
+        <option value="2" id="genius-select">Genius</option>
+      </select>
+    </div>
+    <hr>
+  </section>
   <section id="idea-area" class="wrapper"></section>
   <button class="see-more-btn">See More</button>
   <!-- Template -->
