@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Material.io -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Open Sans -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <!-- Normalize CSS -->
+  <link rel="stylesheet" href="normalize.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <title>IdeaBox</title>
+</head>
+<body>
+  <header>
+    <div class="header-wrapper">
+      <h1>Idea<span>Box</span></h1>
+      <div id="search-bar">
+        <input type="text" id="search-input" placeholder="Search">
+        <p><i class="material-icons search-icon">search</i></p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="wrapper">
+      <form id="idea-input">
+        <div class="input-wrapper">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title-input">
+        </div>
+        <div class="input-wrapper">
+          <label for="body">Body</label>
+          <textarea name="body" id="body-input" rows="6"></textarea>
+        </div>
+        <input type="submit" value="Save" id="save-button">
+      </form>
+    </div>
+  </main>
+  <button class="see-more-btn">See More</button>
+  <section id="idea-area" class="wrapper">
+  </section>
+  <!-- Template -->
+  <template>
+    <article data-id class="idea-card">
+      <h2 contenteditable="true" class="idea-title"></h2>
+      <p contenteditable="true" class="idea-body"></p>
+      <section class="idea-votes">
+        <div class="vote-container">
+          <img src="images/upvote.svg" class="upvote-icon" alt="upvote">
+          <img src="images/downvote.svg" class="downvote-icon" alt="downvote">
+          <p>Quality: <span class="idea-quality"></p>
+        </div>
+        <div class="delete-container">
+          <img src="images/delete.svg" alt="delete" class="delete-icon">
+        </div>
+      </section>
+    </article>
+  </template>
+  <script src="idea.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
