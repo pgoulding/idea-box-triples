@@ -9,9 +9,10 @@
 body, html{
   background-color: #FBFDFD;
   font-family: 'Open Sans', sans-serif;
-  height: 100%;
+  height: auto;
   width: 100vw;
   min-width: 320px;
+  padding-bottom: 15px;
 }
 
 /*---------- Header ----------------*/
@@ -66,11 +67,12 @@ h1 span {
   line-height: 35px;
 }
 
-#search-bar input {
+#search-input {
   border-style: none;
   height: 100%;
   padding-left: 10px;
   width: 90%;
+  border-radius: 5px 0 0 5px;
 }
 
 /*---------- Body ----------------*/
@@ -86,7 +88,7 @@ main {
 }
 
 form {
-  padding-bottom: 25px;
+  padding-bottom: 5px;
 }
 
 form > * {
@@ -114,7 +116,8 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+button:focus {
   outline: 0;
 }
 
@@ -132,7 +135,8 @@ textarea {
   resize: none;
 }
 
-#save-button {
+#save-button,
+.see-more-btn {
   background-color: #5D5C6B;
   border-radius: 5px;
   border: 0;
@@ -141,15 +145,34 @@ textarea {
   font-size: 23px;
   font-weight: 700;
   height: 50px;
-  margin-top: 25px;
+  margin: 25px auto;
   width: 60%;
 }
 
+.see-more-btn {
+ margin: 0 auto;
+ width: 200px;
+}
+
+#save-button:hover,
+.see-more-btn:hover {
+  background-color: #5D5C6B;
+}
+
+#save-button:active,
+.see-more-btn:active {
+  background-color: #5D5C6B;
+}
+
+#save-button:disabled {
+  background-color: #96939B;
+}
+
 #idea-area {
-  height: 100%;
+  height: auto;
   margin: auto;
   max-width: 1200px;
-  padding: 25px 0;
+  padding: 25px 0 0 0;
 }
 
 .idea-card {
@@ -161,17 +184,29 @@ textarea {
 }
 
 .idea-title {
+  border: 2px solid #fff;
   color: #5D5C6B;
   font-size: 25px;
   margin: 20px 25px;
+  padding: 5px;
 }
 
 .idea-body {
+  border: 2px solid #fff;
   color: #7C7879;
   font-size: 20px;
   font-weight: 300;
   line-height: 1.25;
   margin: 20px 25px;
+  padding: 5px;
+}
+
+.idea-title:focus,
+.idea-body:focus {
+  border-radius: 5px;
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 2px lightgrey;
+  outline: none;
 }
 
 .idea-votes {
@@ -220,14 +255,24 @@ textarea {
 
 /*---------- Media Queries ---------*/
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
+
+  header {
+    padding-bottom: 20px;
+  }
 
   #search-bar {
-    width: 50%;
+    width: 100%;
+  }
+
+  .header-wrapper {
+    flex-direction: column;
+    width: 100%;
   }
 
   .input-wrapper,
   #save-button,
+  .see-more-btn,
   .idea-card {
     width: 70%;
   }
@@ -236,13 +281,8 @@ textarea {
 
 @media screen and (max-width: 500px){
 
-  header {
-    padding-bottom: 20px;
-  }
-
-  .header-wrapper {
-    flex-direction: column;
-    width: 100%;
+  h1 {
+    font-size: 3em;
   }
 
   #search-bar {
@@ -251,6 +291,7 @@ textarea {
 
   .input-wrapper,
   #save-button,
+  .see-more-btn,
   .idea-card {
     width: 80%;
   }
