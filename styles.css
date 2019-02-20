@@ -145,7 +145,7 @@ textarea {
   width: 60%;
 }
 #save-button:hover{
-  opacity: .8;
+  background-color: #524649;
 }
 
 #idea-area {
@@ -154,7 +154,9 @@ textarea {
   max-width: 1200px;
   padding: 25px 0;
 }
-
+#quality-select-list{
+  margin: auto;
+}
 .idea-card {
   background-color: white;
   border-radius: 5px;
