@@ -180,17 +180,29 @@ textarea {
 }
 
 .idea-title {
+  border: 2px solid #fff;
   color: #5D5C6B;
   font-size: 25px;
   margin: 20px 25px;
+  padding: 5px;
 }
 
 .idea-body {
+  border: 2px solid #fff;
   color: #7C7879;
   font-size: 20px;
   font-weight: 300;
   line-height: 1.25;
   margin: 20px 25px;
+  padding: 5px;
+}
+
+.idea-title:focus,
+.idea-body:focus {
+  border-radius: 5px;
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 2px lightgrey;
+  outline: none;
 }
 
 .idea-votes {
