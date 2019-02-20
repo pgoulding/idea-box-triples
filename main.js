@@ -18,7 +18,7 @@ bodyInput.addEventListener('input', disableSave)
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
-qualityDropDown.addEventListener('input', filterIdeas);
+qualityDropDown.addEventListener('input', filterByQuality);
 
 /*---------- Functions -----------------*/
 function getIdeas() {
@@ -105,22 +105,34 @@ function vote(e) {
   addRecentIdeas(10);
 }
 
-function searchIdeas(e) {
+function searchIdeas() {
   var searchQuery = searchInput.value.toLowerCase();
   var ideas = getIdeas();
   var searchResults = ideas.filter(function(idea) {
+    console.log(idea)
     return idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery);
   });
   ideaArea.innerHTML = '';
   searchResults.forEach(function(idea) {
     addIdeaCard(idea);
-  });
+  }); 
 }
 
-
-function filterIdeas() {
-
-};
+function filterByQuality() {
+  var filteredQuality = qualityDropDown.value;
+  if (filteredQuality === '--') {
+    addRecentIdeas(getIdeas().length);
+  } else {
+    var ideas = getIdeas();
+    var filterQuality = ideas.filter(function(idea) {
+      return idea.quality === parseInt(filteredQuality);
+    }); 
+    ideaArea.innerHTML = '';
+    filterQuality.forEach(function(idea) {
+      addIdeaCard(idea);
+    });
+  }
+}
 
 function addRecentIdeas(numIdeas) {
   ideaArea.innerHTML = '';
