@@ -7,11 +7,16 @@ var saveBtn = document.querySelector('#save-button');
 var seeMoreBtn = document.querySelector('.see-more-btn');
 var ideaArea = document.querySelector('#idea-area');
 var ideaTemplate = document.querySelector('template');
+var qualityDropDown = document.querySelector('#quality-select-list');
+
+/*---------- Global Variables -----------*/
+
 
 /*---------- Event Listeners -----------*/
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
+qualityDropDown.addEventListener('input', filterIdeas);
 
 /*---------- Functions -----------------*/
 function getIdeas() {
@@ -64,6 +69,15 @@ function addIdeaCard(idea) {
   ideaArea.insertBefore(ideaClone, ideaArea.firstChild);
   titleInput.value = '';
   bodyInput.value = '';
+  saveBtn.disabled = true;
+}
+
+function addIdeaData(clone, idea) {
+  var qualities = ['Swill', 'Plausible', 'Genius'];
+  clone.querySelector('article').dataset.id = idea.id;
+  clone.querySelector('.idea-title').innerText = idea.title;
+  clone.querySelector('.idea-body').innerText = idea.body;
+  clone.querySelector('.idea-quality').innerText = qualities[idea.quality];
 }
 
 function saveEdits(e) {
@@ -90,7 +104,6 @@ function vote(e) {
 }
 
 function searchIdeas(e) {
-  e.preventDefault();
   var searchQuery = searchInput.value.toLowerCase();
   var ideas = getIdeas();
   var searchResults = ideas.filter(function(idea) {
@@ -102,6 +115,11 @@ function searchIdeas(e) {
   });
 }
 
+
+function filterIdeas() {
+
+};
+
 function addRecentIdeas(numIdeas) {
   ideaArea.innerHTML = '';
   var ideas = getIdeas();
@@ -112,7 +130,7 @@ function addRecentIdeas(numIdeas) {
 }
 
 function toggleCardView(e) {
-  event.preventDefault();
+  e.preventDefault();
   if (seeMoreBtn.innerText === 'See More') {
     addRecentIdeas(getIdeas().length);
     seeMoreBtn.innerText = 'See Less';
@@ -123,13 +141,11 @@ function toggleCardView(e) {
 }
 
 function removeIdeaCard(e) {
-  if (e.target.className === 'delete-icon') {
-    e.target.closest('article').remove();
-    var ideas = getIdeas();
-    var i = getIdeaIndex(e, ideas);
-    var ideaToDelete = reinstateIdea(ideas, i);
-    ideaToDelete.deleteFromStorage(ideas, i);
-  };
+  e.target.closest('article').remove();
+  var ideas = getIdeas();
+  var i = getIdeaIndex(e, ideas);
+  var ideaToDelete = reinstateIdea(ideas, i);
+  ideaToDelete.deleteFromStorage(ideas, i);
   storeIdeas(ideas);
   addRecentIdeas(10);
 }

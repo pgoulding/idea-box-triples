@@ -80,6 +80,7 @@ h1 span {
 main {
   background-color: #EEF2F2;
   height: auto;
+  padding-bottom: 25px;
 }
 
 .wrapper {
@@ -87,13 +88,28 @@ main {
   max-width: 1200px;
 }
 
-form {
-  padding-bottom: 5px;
-}
-
 form > * {
   margin: auto;
   width: 60%;
+}
+
+select,
+option {
+  height: 50px;
+  width: 100%;
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   padding-left: 15px;
+}
+
+select:focus {
+  outline: none;
+}
+
+.input-wrapper {
+  width: 60%;
+  margin: auto;
 }
 
 .input-wrapper > * {
@@ -249,7 +265,7 @@ textarea {
 .upvote-icon:hover,
 .delete-icon:hover{
   opacity: .8;
-} 
+}
 
 .vote-container p {
   color: #7C7879;
