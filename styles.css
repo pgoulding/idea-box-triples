@@ -9,9 +9,10 @@
 body, html{
   background-color: #FBFDFD;
   font-family: 'Open Sans', sans-serif;
-  height: 100%;
+  height: auto;
   width: 100vw;
   min-width: 320px;
+  padding-bottom: 15px;
 }
 
 /*---------- Header ----------------*/
@@ -66,11 +67,12 @@ h1 span {
   line-height: 35px;
 }
 
-#search-bar input {
+#search-input {
   border-style: none;
   height: 100%;
   padding-left: 10px;
   width: 90%;
+  border-radius: 5px 0 0 5px;
 }
 
 /*---------- Body ----------------*/
@@ -147,6 +149,11 @@ textarea {
   width: 60%;
 }
 
+.see-more-btn {
+ margin: 0 auto;
+ width: 200px;
+}
+
 #save-button:hover,
 .see-more-btn:hover {
   background-color: #96939B;
@@ -158,10 +165,10 @@ textarea {
 }
 
 #idea-area {
-  height: 100%;
+  height: auto;
   margin: auto;
   max-width: 1200px;
-  padding: 0px 0px 25px 0;
+  padding: 25px 0 0 0;
 }
 
 .idea-card {
@@ -232,10 +239,19 @@ textarea {
 
 /*---------- Media Queries ---------*/
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
+
+  header {
+    padding-bottom: 20px;
+  }
 
   #search-bar {
-    width: 50%;
+    width: 100%;
+  }
+
+  .header-wrapper {
+    flex-direction: column;
+    width: 100%;
   }
 
   .input-wrapper,
@@ -249,13 +265,8 @@ textarea {
 
 @media screen and (max-width: 500px){
 
-  header {
-    padding-bottom: 20px;
-  }
-
-  .header-wrapper {
-    flex-direction: column;
-    width: 100%;
+  h1 {
+    font-size: 3em;
   }
 
   #search-bar {
