@@ -37,22 +37,17 @@
           <textarea name="body" id="body-input" rows="6"></textarea>
         </div>
         <input type="submit" value="Save" id="save-button" disabled>
-      <legend>Quality Level</legend>
-      <select id="quality-select-list" onchange="qualityCategory(value)">
-        <option value="0" id="swill-select">Swill</option>
-        <option value="1" id="plausible-select">Plausible</option>
-        <option value="3" id="genius-select">Genius</option>
-      </select>
       </form>
+      <div class="input-wrapper">
+        <label for="quality-select-list">Quality</label>
+        <select id="quality-select-list">
+          <option value="--" id="default-select">-- Select --</option>
+          <option value="0" id="swill-select">Swill</option>
+          <option value="1" id="plausible-select">Plausible</option>
+          <option value="2" id="genius-select">Genius</option>
+        </select>
+      </div>
     </div>
-<!--     <form class="quality-category-dropdown">
-      <legend>Quality Level</legend>
-      <select id="quality-select-list">
-        <option value="0" id="swill-select">Swill</option>
-        <option value="1" id="plausible-select">Plausible</option>
-        <option value="3" id="genius-select">Genius</option>
-      </select>
-    </form> -->
   </main>
   <section id="idea-area" class="wrapper"></section>
   <button class="see-more-btn">See More</button>
