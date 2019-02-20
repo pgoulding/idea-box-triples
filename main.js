@@ -13,6 +13,8 @@ var qualityDropDown = document.querySelector('#quality-select-list');
 
 
 /*---------- Event Listeners -----------*/
+titleInput.addEventListener('input', disableSave)
+bodyInput.addEventListener('input', disableSave)
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
