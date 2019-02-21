@@ -186,10 +186,5 @@ function disableSave() {
     saveBtn.disabled = true;
   }
 }
-function removeAllIdeaCards(e){
-  //target all cards
-  var ideas =getIdeas();
-  var i = getIdeaIndex(e, ideas)
-  var deleteAllIdeas = reinstateIdea(ideas, i);
-  
+
 window.onload = getRecentIdeas(10);
