@@ -11,7 +11,7 @@ var qualityDropDown = document.querySelector('#quality-select-list');
 var qualityText = document.querySelector('idea-quality');
 
 /*---------- Global Variables -----------*/
-var cardsToShow;
+
 
 /*---------- Event Listeners -----------*/
 titleInput.addEventListener('input', disableSave)
@@ -70,7 +70,7 @@ function addIdeaCard(idea) {
 }
 
 function addIdeaData(clone, idea) {
-  var qualities = ['Swill', 'Plausible', 'Genius'];
+  var qualities = ['Me', 'Garbage', 'Swill', 'Plausible', 'Genius'];
   clone.querySelector('article').dataset.id = idea.id;
   clone.querySelector('.idea-title').innerText = idea.title;
   clone.querySelector('.idea-body').innerText = idea.body;
@@ -171,5 +171,10 @@ function disableSave() {
     saveBtn.disabled = true;
   }
 }
-
+function removeAllIdeaCards(e){
+  //target all cards
+  var ideas =getIdeas();
+  var i = getIdeaIndex(e, ideas)
+  var deleteAllIdeas = reinstateIdea(ideas, i);
+  
 window.onload = getRecentIdeas(10);
