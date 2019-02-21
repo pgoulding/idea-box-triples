@@ -129,7 +129,6 @@ function vote(e) {
   var ideaToVote = reinstateIdea(ideas, i);
   if (e.target.className === 'upvote-icon') {
     ideaToVote.updateQuality('upvote');
-    // qualityText.innerHTML
   } else {
     ideaToVote.updateQuality('downvote');
   }
