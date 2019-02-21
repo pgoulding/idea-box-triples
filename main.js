@@ -102,6 +102,8 @@ function addIdeaCard(idea) {
   titleInput.value = '';
   bodyInput.value = '';
   saveBtn.disabled = true;
+  document.querySelector('#title-count span').innerText = 0;
+  document.querySelector('#body-count span').innerText = 0;
 }
 
 function addIdeaData(clone, idea) {
