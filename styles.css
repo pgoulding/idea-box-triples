@@ -170,7 +170,7 @@ textarea {
   font-size: 23px;
   font-weight: 700;
   height: 50px;
-  margin: 25px auto;
+  margin: 25px auto 0 auto;
   width: 60%;
 }
 
