@@ -124,6 +124,7 @@ function vote(e) {
   ideas[i] = ideaToVote;
   storeIdeas(ideas);
   displayCards();
+  qualityDropDown.value = '--';
 }
 
 function displayCards() {
@@ -187,6 +188,7 @@ function removeIdeaCard(e) {
   ideaToDelete.deleteFromStorage(ideas, i);
   storeIdeas(ideas);
   displayCards();
+  qualityDropDown.value = '--';
 }
 
 function disableSave() {
