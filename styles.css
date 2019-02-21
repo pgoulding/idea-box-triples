@@ -354,7 +354,7 @@ textarea {
     padding: 15px;
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 375px) {
 
     h1 {
       font-size: 2em;
