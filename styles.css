@@ -311,7 +311,7 @@ textarea {
   }
 
   #search-bar {
-    width: 100%;
+    width: 80%;
   }
 
   .header-wrapper {
@@ -335,7 +335,7 @@ textarea {
   }
 
   #search-bar {
-    width: 100%;
+    width: 95%;
   }
 
   .input-wrapper,
@@ -353,4 +353,12 @@ textarea {
   .idea-votes {
     padding: 15px;
   }
+
+  @media screen and (max-width: 500px) {
+
+    h1 {
+      font-size: 2em;
+    }
+  }
+
 }
