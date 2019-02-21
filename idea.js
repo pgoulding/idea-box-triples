@@ -7,7 +7,6 @@ class Idea {
     this.quality = quality;
   }
 
-  // Create static method and pass idea as argument. Call with Idea.saveToStorage(newIdea) in main.js
   saveToStorage(ideas) {
     ideas.push(this);
   }
