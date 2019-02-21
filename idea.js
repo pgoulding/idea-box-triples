@@ -1,6 +1,6 @@
 class Idea {
 
-  constructor(id, title, body, quality = 0) {
+  constructor(id, title, body, quality = 2) {
     this.id = id;
     this.title = title;
     this.body = body;
@@ -37,7 +37,7 @@ class Idea {
   }
 
   upvote() {
-    if(this.quality < 2) {
+    if(this.quality < 4) {
       this.quality++;
     }
   }
