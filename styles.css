@@ -183,6 +183,7 @@ textarea {
 #save-button:hover,
 .see-more-btn:hover {
   background-color: #322A2F;
+  cursor: pointer;
 }
 
 #save-button:active,
@@ -192,6 +193,7 @@ textarea {
 
 #save-button:disabled {
   background-color: #C1CECD;
+  cursor: auto;
 }
 
 #idea-area {
@@ -274,7 +276,8 @@ textarea {
 .downvote-icon:hover,
 .upvote-icon:hover,
 .delete-icon:hover{
-  opacity: .8;
+  filter:brightness(80%);
+  cursor: pointer;
 }
 
 .vote-container p {
