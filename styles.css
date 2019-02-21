@@ -203,15 +203,19 @@ textarea {
   cursor: auto;
 }
 
+/*---------- Card Styles ----------------*/
+
 #idea-area {
   height: auto;
   margin: auto;
   max-width: 1200px;
   padding: 25px 0 0 0;
 }
+
 #quality-select-list{
   margin: auto;
 }
+
 .idea-card {
   background-color: white;
   border: 2px solid lightgrey;
@@ -324,7 +328,7 @@ textarea {
 
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
 
   h1 {
     font-size: 3em;
