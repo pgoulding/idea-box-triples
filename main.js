@@ -8,13 +8,13 @@ var seeMoreBtn = document.querySelector('.see-more-btn');
 var ideaArea = document.querySelector('#idea-area');
 var ideaTemplate = document.querySelector('template');
 var qualityDropDown = document.querySelector('#quality-select-list');
-
-/*---------- Global Variables -----------*/
-
+var qualityText = document.querySelector('idea-quality');
 
 /*---------- Event Listeners -----------*/
-titleInput.addEventListener('input', disableSave)
-bodyInput.addEventListener('input', disableSave)
+titleInput.addEventListener('input', disableSave);
+bodyInput.addEventListener('input', disableSave);
+titleInput.addEventListener('keypress', saveOnEnter);
+bodyInput.addEventListener('keypress', saveOnEnter);
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
@@ -29,9 +29,7 @@ function getIdeas() {
 function getIdeaIndex(e, ideas) {
   var parent = e.target.closest('article');
   var parentID = parseInt(parent.dataset.id);
-  var index = ideas.findIndex(function(idea) {
-    return idea.id === parentID;
-  });
+  var index = ideas.findIndex(idea => idea.id === parentID);
   return index;
 }
 
@@ -49,15 +47,31 @@ function createIdea(e) {
   var newIdea = new Idea(Date.now(), titleInput.value, bodyInput.value);
   newIdea.saveToStorage(ideas);
   storeIdeas(ideas);
-  addRecentIdeas(10);
+  displayCards();
 }
 
 function addIdeaListeners(clone) {
+  clone.querySelector('.idea-title').addEventListener('keypress', blurInput);
+  clone.querySelector('.idea-body').addEventListener('keypress', blurInput);
   clone.querySelector('.idea-title').addEventListener('blur', saveEdits);
   clone.querySelector('.idea-body').addEventListener('blur', saveEdits);
   clone.querySelector('.delete-icon').addEventListener('click', removeIdeaCard);
   clone.querySelector('.upvote-icon').addEventListener('click', vote);
   clone.querySelector('.downvote-icon').addEventListener('click', vote);
+}
+
+function saveOnEnter(e) {
+  if(e.key === "Enter") {
+    e.preventDefault();
+    saveBtn.click();
+  }
+}
+
+function blurInput(e) {
+  if(e.key === "Enter") {
+    e.preventDefault();
+    e.target.blur();
+  }
 }
 
 function addIdeaCard(idea) {
@@ -71,7 +85,7 @@ function addIdeaCard(idea) {
 }
 
 function addIdeaData(clone, idea) {
-  var qualities = ['Swill', 'Plausible', 'Genius'];
+  var qualities = ['Me', 'Garbage', 'Swill', 'Plausible', 'Genius'];
   clone.querySelector('article').dataset.id = idea.id;
   clone.querySelector('.idea-title').innerText = idea.title;
   clone.querySelector('.idea-body').innerText = idea.body;
@@ -93,59 +107,64 @@ function vote(e) {
   var ideaToVote = reinstateIdea(ideas, i);
   if (e.target.className === 'upvote-icon') {
     ideaToVote.updateQuality('upvote');
-  } else if (e.target.className === 'downvote-icon') {
+    // qualityText.innerHTML
+  } else {
     ideaToVote.updateQuality('downvote');
-  };
+  }
   ideas[i] = ideaToVote;
   storeIdeas(ideas);
-  addRecentIdeas(10);
+  displayCards();
+}
+
+function displayCards() {
+  if(seeMoreBtn.innerText === 'See More') {
+    getRecentIdeas(10);
+  } else {
+    getRecentIdeas(getIdeas().length);
+  }
 }
 
 function searchIdeas() {
   var searchQuery = searchInput.value.toLowerCase();
   var ideas = getIdeas();
-  var searchResults = ideas.filter(function(idea) {
-    console.log(idea)
-    return idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery);
-  });
+  var searchResults = ideas.filter(idea => idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery));
   ideaArea.innerHTML = '';
-  searchResults.forEach(function(idea) {
-    addIdeaCard(idea);
-  }); 
+  searchResults.forEach(idea => addIdeaCard(idea));
 }
 
 function filterByQuality() {
-  var filteredQuality = qualityDropDown.value;
-  if (filteredQuality === '--') {
-    addRecentIdeas(getIdeas().length);
+  var quality = qualityDropDown.value;
+  if (quality === '--') {
+    getRecentIdeas(getIdeas().length);
   } else {
     var ideas = getIdeas();
-    var filterQuality = ideas.filter(function(idea) {
-      return idea.quality === parseInt(filteredQuality);
-    }); 
+    var filterQuality = ideas.filter(idea => idea.quality === parseInt(quality));
     ideaArea.innerHTML = '';
-    filterQuality.forEach(function(idea) {
-      addIdeaCard(idea);
-    });
+    filterQuality.forEach(idea => addIdeaCard(idea));
+    seeMoreBtn.style.display = 'none';
   }
 }
 
-function addRecentIdeas(numIdeas) {
+function getRecentIdeas(numIdeas) {
   ideaArea.innerHTML = '';
   var ideas = getIdeas();
-  var recentIdeas = ideas.slice(ideas.length - numIdeas, ideas.length);
-  recentIdeas.forEach(function(idea) {
-    addIdeaCard(idea)
-  });
+  if(ideas.length <= 10) {
+    ideas.forEach(idea => addIdeaCard(idea));
+    seeMoreBtn.style.display = 'none';
+  } else {
+    var recentIdeas = ideas.slice(ideas.length - numIdeas, ideas.length);
+    recentIdeas.forEach(idea => addIdeaCard(idea));
+    seeMoreBtn.style.display = 'block';
+  }
 }
 
 function toggleCardView(e) {
   e.preventDefault();
   if (seeMoreBtn.innerText === 'See More') {
-    addRecentIdeas(getIdeas().length);
+    getRecentIdeas(getIdeas().length);
     seeMoreBtn.innerText = 'See Less';
   } else {
-    addRecentIdeas(10);
+    getRecentIdeas(10);
     seeMoreBtn.innerText = 'See More';
   }
 }
@@ -157,16 +176,20 @@ function removeIdeaCard(e) {
   var ideaToDelete = reinstateIdea(ideas, i);
   ideaToDelete.deleteFromStorage(ideas, i);
   storeIdeas(ideas);
-  addRecentIdeas(10);
+  displayCards();
 }
 
 function disableSave() {
-  if (titleInput.value !== '' && bodyInput.value !== '')
-    {
-      saveBtn.disabled = false;
-    } else {
-      saveBtn.disabled = true;
-    }
+  if (titleInput.value !== '' && bodyInput.value !== '') {
+    saveBtn.disabled = false;
+  } else {
+    saveBtn.disabled = true;
+  }
 }
-
-window.onload = addRecentIdeas(10);
+function removeAllIdeaCards(e){
+  //target all cards
+  var ideas =getIdeas();
+  var i = getIdeaIndex(e, ideas)
+  var deleteAllIdeas = reinstateIdea(ideas, i);
+  
+window.onload = getRecentIdeas(10);

@@ -94,14 +94,15 @@ form > * {
 }
 
 select {
-   -moz-appearance: none;
-  -webkit-appearance: none;
-   appearance: none;
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
+  padding: 15px;
   background-color: white;
   border: 2px solid lightgrey;
   height: 50px;
-   padding-left: 15px;
   width: 60%;
+  color: grey;
 }
 
 select:focus {
@@ -182,6 +183,7 @@ textarea {
 #save-button:hover,
 .see-more-btn:hover {
   background-color: #322A2F;
+  cursor: pointer;
 }
 
 #save-button:active,
@@ -191,6 +193,7 @@ textarea {
 
 #save-button:disabled {
   background-color: #C1CECD;
+  cursor: auto;
 }
 
 #idea-area {
@@ -273,7 +276,8 @@ textarea {
 .downvote-icon:hover,
 .upvote-icon:hover,
 .delete-icon:hover{
-  opacity: .8;
+  filter:brightness(80%);
+  cursor: pointer;
 }
 
 .vote-container p {
