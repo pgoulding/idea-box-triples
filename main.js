@@ -30,10 +30,16 @@ function getIdeas() {
 
 function countTitle() {
   document.querySelector('#title-count span').innerText = titleInput.value.length;
+  if (titleInput.value.length > 50) {
+    saveBtn.disabled = true;
+  }
 }
 
 function countBody() {
   document.querySelector('#body-count span').innerText = bodyInput.value.length;
+  if (bodyInput.value.length > 120) {
+    saveBtn.disabled = true;
+  }
 }
 
 function getIdeaIndex(e, ideas) {
