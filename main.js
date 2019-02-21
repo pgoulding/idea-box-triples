@@ -12,9 +12,11 @@ var qualityText = document.querySelector('idea-quality');
 
 /*---------- Event Listeners -----------*/
 titleInput.addEventListener('input', disableSave);
-bodyInput.addEventListener('input', disableSave);
 titleInput.addEventListener('keypress', saveOnEnter);
+titleInput.addEventListener('input', countTitle);
+bodyInput.addEventListener('input', disableSave);
 bodyInput.addEventListener('keypress', saveOnEnter);
+bodyInput.addEventListener('input', countBody);
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
@@ -24,6 +26,14 @@ qualityDropDown.addEventListener('input', filterByQuality);
 function getIdeas() {
   var ideasString = localStorage.ideas || '[]';
   return JSON.parse(ideasString);
+}
+
+function countTitle() {
+  document.querySelector('#title-count span').innerText = titleInput.value.length;
+}
+
+function countBody() {
+  document.querySelector('#body-count span').innerText = bodyInput.value.length;
 }
 
 function getIdeaIndex(e, ideas) {
