@@ -30,16 +30,18 @@ function getIdeas() {
 
 function countTitle() {
   document.querySelector('#title-count span').innerText = titleInput.value.length;
-  if (titleInput.value.length > 50) {
+  if (titleInput.value.length > 25) {
     saveBtn.disabled = true;
-  }
+  } else {
+    saveBtn.disabled = false;
 }
 
 function countBody() {
   document.querySelector('#body-count span').innerText = bodyInput.value.length;
   if (bodyInput.value.length > 120) {
     saveBtn.disabled = true;
-  }
+  } else {
+    saveBtn.disabled = false;
 }
 
 function getIdeaIndex(e, ideas) {
