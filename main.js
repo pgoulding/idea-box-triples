@@ -34,6 +34,7 @@ function countTitle() {
     saveBtn.disabled = true;
   } else {
     saveBtn.disabled = false;
+  }
 }
 
 function countBody() {
@@ -42,6 +43,7 @@ function countBody() {
     saveBtn.disabled = true;
   } else {
     saveBtn.disabled = false;
+  }
 }
 
 function getIdeaIndex(e, ideas) {
