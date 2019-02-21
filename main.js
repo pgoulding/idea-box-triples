@@ -9,12 +9,11 @@ var ideaArea = document.querySelector('#idea-area');
 var ideaTemplate = document.querySelector('template');
 var qualityDropDown = document.querySelector('#quality-select-list');
 
-/*---------- Global Variables -----------*/
-var cardsToShow;
-
 /*---------- Event Listeners -----------*/
-titleInput.addEventListener('input', disableSave)
-bodyInput.addEventListener('input', disableSave)
+titleInput.addEventListener('input', disableSave);
+bodyInput.addEventListener('input', disableSave);
+titleInput.addEventListener('keypress', saveOnEnter);
+bodyInput.addEventListener('keypress', saveOnEnter);
 saveBtn.addEventListener('click', createIdea);
 seeMoreBtn.addEventListener('click', toggleCardView);
 searchInput.addEventListener('input', searchIdeas);
@@ -51,11 +50,27 @@ function createIdea(e) {
 }
 
 function addIdeaListeners(clone) {
+  clone.querySelector('.idea-title').addEventListener('keypress', blurInput);
+  clone.querySelector('.idea-body').addEventListener('keypress', blurInput);
   clone.querySelector('.idea-title').addEventListener('blur', saveEdits);
   clone.querySelector('.idea-body').addEventListener('blur', saveEdits);
   clone.querySelector('.delete-icon').addEventListener('click', removeIdeaCard);
   clone.querySelector('.upvote-icon').addEventListener('click', vote);
   clone.querySelector('.downvote-icon').addEventListener('click', vote);
+}
+
+function saveOnEnter(e) {
+  if(e.key === "Enter") {
+    e.preventDefault();
+    saveBtn.click();
+  }
+}
+
+function blurInput(e) {
+  if(e.key === "Enter") {
+    e.preventDefault();
+    e.target.blur();
+  }
 }
 
 function addIdeaCard(idea) {
