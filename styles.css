@@ -167,6 +167,7 @@ button:focus {
 textarea {
   border: 2px solid lightgrey;
   padding: 15px;
+  line-height: 1.2;
   resize: none;
 }
 
